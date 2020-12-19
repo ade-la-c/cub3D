@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 17:41:20 by ade-la-c          #+#    #+#             */
-/*   Updated: 2020/12/19 17:46:53 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2020/12/19 20:29:36 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ void				t_rgb_init(t_rgb *rgb);
 void				t_vec_init(t_vec *vec);
 
 void				parse_r(t_file *file, char *line);
+void				parse_path(t_file *file, char *line, char *path);
 
 #endif

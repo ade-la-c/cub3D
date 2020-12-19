@@ -6,7 +6,7 @@
 #    By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 17:00:24 by ade-la-c          #+#    #+#              #
-#    Updated: 2020/12/19 17:52:39 by ade-la-c         ###   ########.fr        #
+#    Updated: 2020/12/19 18:49:24 by ade-la-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,12 +23,18 @@ MLX				= libmlx.dylib
 
 CC				= gcc
 
-RM				= rm -fr
+RM				= rm -f
 
-CFLAGS			= -Wall -Werror -Wextra
+CFLAGS			= -Wall -Werror -Wextra -I. #-g -fsanitize=address
 
 LIBS			= -L./libft -lft -L. -lmlx -framework OpenGL \
 							-framework AppKit -lm
+
+CL_GREY		= \033[38;2;128;128;128m
+
+CL_GREEN	= \033[38;2;0;153;0m
+
+CL_RESET	= \033[0m
 
 .c.o:
 				@${CC} ${CFLAGS} -c $^ -o $@
@@ -47,7 +53,7 @@ $(NAME):		$(OBJS)
 				@echo "$(CL_RESET)"
 				@echo "$(CL_GREEN)-> COMPILING CUB3D$(CL_RESET)"
 				@echo "$(CL_GREY)"
-				$(CC) -o $(NAME) $(OBJS) $(LIBS)
+				$(CC) -o ${CFLAGS} -o $(NAME) $(OBJS) $(LIBS)
 				@echo "$(CL_RESET)"
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:08:56 by ade-la-c          #+#    #+#             */
-/*   Updated: 2020/12/19 18:10:09 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2020/12/19 20:29:43 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,24 @@ static void			lsthub(t_list *lst, t_file *file)
 	tmp = lst->content;
 	if (!ft_strncmp(tmp, "R ", 2))
 		parse_r(file, tmp);
-//	else if (!ft_strncmp(tmp, "NO ", 3))
-//		parse_no(&file, tmp);
+	else if (!ft_strncmp(tmp, "NO ", 3))
+		parse_path(file, tmp, file->no);
 //	else if (!ft_strncmp(tmp, "SO ", 3))
-//		parse_so(&file, tmp);
+//		parse_path(file, tmp);
 //	else if (!ft_strncmp(tmp, "WE ", 3))
-//		parse_we(&file, tmp);
+//		parse_path(file, tmp);
 //	else if (!ft_strncmp(tmp, "EA ", 3))
-//		parse_ea(&file, tmp);
+//		parse_path(file, tmp);
 //	else if (!ft_strncmp(tmp, "S ", 2))
-//		parse_s(&file, tmp);
+//		parse_s(file, tmp);
 //	else if (!ft_strncmp(tmp, "F ", 2))
-//		parse_f(&file, tmp);
+//		parse_f(file, tmp);
 //	else if (!ft_strncmp(tmp, "C ", 2))
-//		parse_c(&file, tmp);
+//		parse_c(file, tmp);
 	return ;
 }
-/*
-void				t_file_init(t_file *file)
+
+static void			t_file_init(t_file *file)
 {
 	t_vec_init(&file->r);
 	file->no = NULL;
@@ -47,12 +47,12 @@ void				t_file_init(t_file *file)
 	t_rgb_init(&file->f);
 	t_rgb_init(&file->c);
 }
-*/
+
 void				parse_lst(t_list **lst)
 {
 	t_file			file;
 
-	//t_file_init(&file);
+	t_file_init(&file);
 	while (lst)
 	{
 		lsthub(*lst, &file);
