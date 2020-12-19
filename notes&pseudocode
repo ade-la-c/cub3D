@@ -1,0 +1,32 @@
+1 : file_to_lst
+le fichier est transformé en liste chaînée
+
+il faut ensuite parser :
+-il y a une information / ligne,
+chaqune de ces informations est à l'état brut
+il faut parser chaque ligne pour attribuer les données brutes à un t_file
+
+Contraintes du parsing (partie map non incluse) :
+-les données du .cub sont pas forcément dans l'ordre
+-si les données sont en double -> erreur
+-le format de données est toujours le même (ligne par ligne)
+
+-> Comment détecter que la partie "definer" d'une ligne et la faire
+correspondre a une variable ??
+	|-> parser a la mano
+
+-> Comment détecter un doublon afin d'envoyer une message d'erreur ??
+	//|-> assigner des valeurs non obtenables en fichier sur les variables
+	//	du t_file, afin de vérifier (condition if) si la variable a été
+	//	déjà assignée ou pas (auquel cas -> erreur)
+	|-> utiliser les BITFLAGS* (notion importante et pratique) me
+		permettera de check :
+		-que les definers soient pas 2 fois présents sur le .cub
+		-que les definers soient tous la et qu'il en manque aucun
+		(auquel cas -> erreur)
+
+
+*BITFLAGS : dans un unsigned char représenté en binaire il y a assez
+			de bits pour faire 8 booleans en une seule variable
+			(ça tombe bien, on a pile 8 valeurs a checker)
+			-Cette solution est plus optimisée en code et en stockage
