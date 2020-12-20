@@ -6,7 +6,7 @@
 #    By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 17:00:24 by ade-la-c          #+#    #+#              #
-#    Updated: 2020/12/19 18:49:24 by ade-la-c         ###   ########.fr        #
+#    Updated: 2020/12/20 17:32:22 by ade-la-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME			= Cub3D
 
 SRCS			= get_next_line/get_next_line.c \
 				get_next_line/get_next_line_utils.c \
-				main.c file_init.c utils.c data_parsing_1.c \
+				main.c file_init.c utils.c data_parsing.c \
 
 
 OBJS			= $(SRCS:.c=.o)
@@ -25,7 +25,7 @@ CC				= gcc
 
 RM				= rm -f
 
-CFLAGS			= -Wall -Werror -Wextra -I. #-g -fsanitize=address
+CFLAGS			= -Wall -Werror -Wextra -I. -g -fsanitize=address
 
 LIBS			= -L./libft -lft -L. -lmlx -framework OpenGL \
 							-framework AppKit -lm

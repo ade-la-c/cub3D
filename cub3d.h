@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 17:41:20 by ade-la-c          #+#    #+#             */
-/*   Updated: 2020/12/19 20:29:36 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2020/12/20 17:04:51 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ typedef struct		s_file
 void				t_rgb_init(t_rgb *rgb);
 void				t_vec_init(t_vec *vec);
 
-void				parse_r(t_file *file, char *line);
-void				parse_path(t_file *file, char *line, char *path);
+void				parse_vec(char *line, t_vec *vec, int i);
+void				parse_path(char *line, char **path, int i);
+void				parse_rgb(char *line, t_rgb *rgb, int i);
 
 #endif

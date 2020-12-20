@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:08:56 by ade-la-c          #+#    #+#             */
-/*   Updated: 2020/12/19 20:29:43 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2020/12/20 17:29:02 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@ static void			lsthub(t_list *lst, t_file *file)
 
 	tmp = lst->content;
 	if (!ft_strncmp(tmp, "R ", 2))
-		parse_r(file, tmp);
+		parse_vec(tmp, &file->r, 1);
 	else if (!ft_strncmp(tmp, "NO ", 3))
-		parse_path(file, tmp, file->no);
-//	else if (!ft_strncmp(tmp, "SO ", 3))
-//		parse_path(file, tmp);
-//	else if (!ft_strncmp(tmp, "WE ", 3))
-//		parse_path(file, tmp);
-//	else if (!ft_strncmp(tmp, "EA ", 3))
-//		parse_path(file, tmp);
-//	else if (!ft_strncmp(tmp, "S ", 2))
-//		parse_s(file, tmp);
-//	else if (!ft_strncmp(tmp, "F ", 2))
-//		parse_f(file, tmp);
-//	else if (!ft_strncmp(tmp, "C ", 2))
-//		parse_c(file, tmp);
+		parse_path(tmp, &file->no, 2);
+	else if (!ft_strncmp(tmp, "SO ", 3))
+		parse_path(tmp, &file->so, 2);
+	else if (!ft_strncmp(tmp, "WE ", 3))
+		parse_path(tmp, &file->we, 2);
+	else if (!ft_strncmp(tmp, "EA ", 3))
+		parse_path(tmp, &file->ea, 2);
+	else if (!ft_strncmp(tmp, "S ", 2))
+		parse_path(tmp, &file->s, 1);
+	else if (!ft_strncmp(tmp, "F ", 2))
+		parse_rgb(tmp, &file->f, 1);
+	else if (!ft_strncmp(tmp, "C ", 2))
+		parse_rgb(tmp, &file->c, 1);
 	return ;
 }
 
@@ -51,12 +51,14 @@ static void			t_file_init(t_file *file)
 void				parse_lst(t_list **lst)
 {
 	t_file			file;
+	t_list			*a;
 
+	a = *lst;
 	t_file_init(&file);
 	while (lst)
 	{
-		lsthub(*lst, &file);
-		*lst = (*lst)->next;
+		lsthub(a, &file);
+		a = a->next;
 	}
 	return ;
 }
@@ -75,10 +77,14 @@ void				file_to_lst(char *filepath)
 	while (get_next_line(fd, &line) > 0)
 	{
 		el = ft_lstnew(line);
+		printf("0\n");
 		ft_lstadd_back(lst, el);
+		printf("1\n");
 	}
 	el = ft_lstnew(line);
+	printf("0.0\n");
 	ft_lstadd_back(lst, el);
+	printf("0.1\n");
 	close(fd);
 	parse_lst(lst);
 	return ;
