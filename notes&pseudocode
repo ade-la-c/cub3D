@@ -30,3 +30,4 @@ correspondre a une variable ??
 			de bits pour faire 8 booleans en une seule variable
 			(ça tombe bien, on a pile 8 valeurs a checker)
 			-Cette solution est plus optimisée en code et en stockage
+

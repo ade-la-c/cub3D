@@ -6,7 +6,7 @@
 #    By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 17:00:24 by ade-la-c          #+#    #+#              #
-#    Updated: 2020/12/20 17:32:22 by ade-la-c         ###   ########.fr        #
+#    Updated: 2020/12/23 18:05:30 by ade-la-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ $(NAME):		$(OBJS)
 				@echo "$(CL_RESET)"
 				@echo "$(CL_GREEN)-> COMPILING CUB3D$(CL_RESET)"
 				@echo "$(CL_GREY)"
-				$(CC) -o ${CFLAGS} -o $(NAME) $(OBJS) $(LIBS)
+				$(CC) ${CFLAGS} -o $(NAME) $(OBJS) $(LIBS)
 				@echo "$(CL_RESET)"
 
 clean:

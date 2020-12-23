@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:08:56 by ade-la-c          #+#    #+#             */
-/*   Updated: 2020/12/20 17:29:02 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2020/12/23 17:30:01 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void			lsthub(t_list *lst, t_file *file)
 {
 	char			*tmp;
 
-	tmp = lst->content;
+	tmp = (char *)lst->content;
 	if (!ft_strncmp(tmp, "R ", 2))
 		parse_vec(tmp, &file->r, 1);
 	else if (!ft_strncmp(tmp, "NO ", 3))
@@ -55,11 +55,12 @@ void				parse_lst(t_list **lst)
 
 	a = *lst;
 	t_file_init(&file);
-	while (lst)
+	while (a)
 	{
 		lsthub(a, &file);
 		a = a->next;
 	}
+	imprimer_file(&file);
 	return ;
 }
 
@@ -70,21 +71,19 @@ void				file_to_lst(char *filepath)
 	char			*line;
 	int				fd;
 
+	
 	if (!((lst = malloc(sizeof(t_list *)))))
 		return ;
+	*lst = NULL;
 	if (!(fd = open(filepath, O_RDONLY)))
 		return ;
 	while (get_next_line(fd, &line) > 0)
 	{
 		el = ft_lstnew(line);
-		printf("0\n");
 		ft_lstadd_back(lst, el);
-		printf("1\n");
 	}
 	el = ft_lstnew(line);
-	printf("0.0\n");
 	ft_lstadd_back(lst, el);
-	printf("0.1\n");
 	close(fd);
 	parse_lst(lst);
 	return ;
