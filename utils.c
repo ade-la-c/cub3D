@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 16:26:40 by ade-la-c          #+#    #+#             */
-/*   Updated: 2020/12/19 17:48:53 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/01/21 19:20:30 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void				t_vec_init(t_vec *vec)
 	vec->y = 0;
 	return ;
 }
-/*
-void				exit_error(int errno)
+void				exit_error(char *error)
 {
-	write(STDERR_FILENO, "error\n", 6);
-	exit(-1);
+	ft_putstr(error);
+	ft_putchar('\n');
+	exit(0);
+	return ;
 }
-*/

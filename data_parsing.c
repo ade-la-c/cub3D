@@ -6,18 +6,18 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:30:27 by ade-la-c          #+#    #+#             */
-/*   Updated: 2020/12/23 18:35:03 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/01/21 20:33:34 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void				parse_vec(char *line, t_vec *vec, int i)
+void					parse_vec(char *line, t_vec *vec, int i)
 {
 	while (line[i] == ' ')
 		i++;
 	if (!ft_isdigit(line[i]))
-		return ;		//error
+		exit_error("FILE : format error in resolution parameter");
 	vec->x = ft_atoi(&line[i]);
 	while (ft_isdigit(line[i]))
 		i++;
@@ -26,60 +26,66 @@ void				parse_vec(char *line, t_vec *vec, int i)
 	vec->y = ft_atoi(&line[i]);
 	return ;
 }
-
-void				parse_path(char *line, char **path, int i)
-{
-	while (line[i] == ' ')
-		i++;
-	*path = ft_strdup(&line[i]);
-	return ;
-}
-
-void				parse_rgb(char *line, t_rgb *rgb, int i)
-{
-	int				checker;
-
-	checker = 0;
-	while (line[i] == ' ')
-		i++;
-	if (!ft_isdigit(line[i]))
-		return ;		//error
-	rgb->r = ft_atoi(&line[i]);
-	while (ft_isdigit(line[i]) != 0)
-		i++;
-	while ((line[i] == ' ' || line[i] == ','))
-	{
-		if (line[i] == ',')
-			checker++;
-		i++;
-	}
-	if (checker != 1)
-		return ;		//error
-	checker = 0;
-	rgb->g = ft_atoi(&line[i]);
-	while (ft_isdigit(line[i]) != 0)
-		i++;
-	while (line[i] == ' ' || line[i] == ',')
-	{
-		if (line[i] == ',')
-			checker++;
-		i++;
-	}
-	if (checker != 1)
-		return ;		//error
-	rgb->b = ft_atoi(&line[i]);
-	return ;
-}
-
 /*
-	-> les fonctions du parsing fonctionnent correctement, je dois utiliser
-	le systeme de bitflags pour identifier les doublons (des parametres)
-	afin d'envoyer une erreur
-	-> les commentaires "//erreur" dans ce fichier correspondent a des 
-	returns qui doivent etre remplacés par une fonction type "exit_error"
-	->parse_rgb reste a normer
+void					parse_path(char *line, char **path, int i)
+{
+	while (line[i] == ' ')
+		i++;
+	return ;
+}
 */
+static char				**split_rgb(char *line, int i)
+{
+	int				n;
+	int				j;
+	char			**strs;
+
+	n = 0;
+	j = 0;
+	strs = ft_split(&line[i], ',');
+	if (!strs)
+		exit_error("ft_split : crash");
+	while (line[i++])
+		if (line[i] == ',')
+			n++;
+	if (n != 2)
+		exit_error("FILE : format error in rgb parameters");
+	while (strs[j] != NULL)
+		j++;
+	if (j != 3)
+		exit_error("FILE : format error in rgb parameters");
+	return (strs);
+}
+
+void					parse_rgb(char *line, t_rgb *rgb, int i)
+{
+	char				**strs;
+	char				*trim[3];
+	int					j;
+
+	j = 0;
+	strs = split_rgb(line, i);	
+	j = -1;
+	while (strs[++j] != NULL)
+	{
+		trim[j] = ft_strtrim(strs[j], " ");
+		if (!(ft_atoi(trim[j]) >= 0 && ft_atoi(trim[j]) <= 255
+		&& ft_strlen(trim[j]) < 4))
+			exit_error("FILE : format error in rgb parameters");
+	}
+	while (j-- && strs[j])
+		free(strs[j]);
+	free(strs);
+	rgb->r = (char)ft_atoi(trim[0]);
+	rgb->g = (char)ft_atoi(trim[1]);
+	rgb->b = (char)ft_atoi(trim[2]);
+	return ;
+}
+
 /*
+**	->faire parse_path from scratch
+*/
+
 void	imprimer_file(t_file *file)
 {
 	printf("R %d %d\n", file->r.x, file->r.y);
@@ -93,4 +99,3 @@ void	imprimer_file(t_file *file)
 	printf("\n");
 	return ;
 }
-*/
