@@ -1,9 +1,9 @@
-R 1920 1080          ,
-NO assets/texture.xmp
-SO assets/texture.xmp
-WE assets/texture.xmp
-EA assets/texture.xmp
-S assets/texture.xmp
+R 1920 1080
+NO assets/textureno.xmp
+SO assets/textureso.xmp
+WE assets/texturewe.xmp
+EA assets/textureea.xmp
+S assets/textures.xmp
 F 255, 200, 25
 C 221 ,50,2
 

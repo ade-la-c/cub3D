@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 17:41:20 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/01/21 19:20:20 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/01/30 18:36:57 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct		s_rgb
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
+	int				check;
 }					t_rgb;
 
 typedef struct		s_vec
@@ -49,15 +50,17 @@ typedef struct		s_file
 	char			*s;
 	t_rgb			f;
 	t_rgb			c;
+	int				parsed;
 }					t_file;
 
 void				t_rgb_init(t_rgb *rgb);
 void				t_vec_init(t_vec *vec);
 void				exit_error(char *error);
+int					ft_isspace(char c);
 
-void				parse_vec(char *line, t_vec *vec, int i);
-void				parse_path(char *line, char **path, int i);
-void				parse_rgb(char *line, t_rgb *rgb, int i);
+void				parse_vec(char *line, t_vec *vec, int *parsed, int i);
+void				parse_path(char *line, char **path, int *parsed, int i);
+void				parse_rgb(char *line, t_rgb *rgb, int *parsed, int i);
 
 void	imprimer_file(t_file *file);
 

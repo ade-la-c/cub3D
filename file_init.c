@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:08:56 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/01/21 20:05:09 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/01/30 18:22:47 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@ static void			lsthub(t_list *lst, t_file *file)
 
 	tmp = (char *)lst->content;
 	if (!ft_strncmp(tmp, "R ", 2))
-		parse_vec(tmp, &file->r, 1);
+		parse_vec(tmp, &file->r, &file->parsed, 1);
 	else if (!ft_strncmp(tmp, "NO ", 3))
-		parse_path(tmp, &file->no, 2);
+		parse_path(tmp, &file->no, &file->parsed, 2);
 	else if (!ft_strncmp(tmp, "SO ", 3))
-		parse_path(tmp, &file->so, 2);
+		parse_path(tmp, &file->so, &file->parsed, 2);
 	else if (!ft_strncmp(tmp, "WE ", 3))
-		parse_path(tmp, &file->we, 2);
+		parse_path(tmp, &file->we, &file->parsed, 2);
 	else if (!ft_strncmp(tmp, "EA ", 3))
-		parse_path(tmp, &file->ea, 2);
+		parse_path(tmp, &file->ea, &file->parsed, 2);
 	else if (!ft_strncmp(tmp, "S ", 2))
-		parse_path(tmp, &file->s, 1);
+		parse_path(tmp, &file->s, &file->parsed, 1);
 	else if (!ft_strncmp(tmp, "F ", 2))
-		parse_rgb(tmp, &file->f, 1);
+		parse_rgb(tmp, &file->f, &file->parsed, 1);
 	else if (!ft_strncmp(tmp, "C ", 2))
-		parse_rgb(tmp, &file->c, 1);
+		parse_rgb(tmp, &file->c, &file->parsed, 1);
 	return ;
 }
 
@@ -46,6 +46,7 @@ static void			t_file_init(t_file *file)
 	file->s = NULL;
 	t_rgb_init(&file->f);
 	t_rgb_init(&file->c);
+	file->parsed = 0;
 }
 
 void				parse_lst(t_list **lst)
@@ -94,5 +95,6 @@ int					main(void)
 	char			*filepath = "./assets/file.cub";
 
 	file_to_lst(filepath);
+//	system("leaks Cub3D");
 	return (0);
 }
