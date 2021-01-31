@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:30:27 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/01/30 18:58:40 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/01/31 19:12:44 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void					parse_path(char *line, char **path, int *parsed, int i)
 {
 	char				*str;
 
-printf("-----%s\n", *path);
 	if (*path != NULL)
 		exit_error("FILE : parameter has been entered twice or more");
 	str = ft_strtrim(&line[i], " ");
@@ -41,12 +40,11 @@ printf("-----%s\n", *path);
 		if (ft_isspace(str[i]))
 			exit_error("FILE : format error in path parameters");
 		i++;
-	}printf(">>>>>%s\n", str);
-	*path = ft_strcpy(*path, str);
-	//if (*path == NULL)
-	//	exit_error("FILE : path parameter is incomplete");
+	}
+	*path = str;
+	if (!str || str == NULL)
+		exit_error("FILE : path parameter is incomplete");
 	parsed++;
-	free(str);
 	return ;
 }
 
@@ -103,9 +101,9 @@ void					parse_rgb(char *line, t_rgb *rgb, int *parsed, int i)
 }
 
 /*
-**	->faire parse_path from scratch
-**	->dans parse_path j'arrive pas a free le strtrim
-**	tout en attribuant le path a la string.
+**	->tous les paths sont malloqués
+**	->j'arrive pas a faire la sortie d'erreur ou il y a rien dans le parametre
+**	de parse_str :(
 */
 
 void	imprimer_file(t_file *file)
