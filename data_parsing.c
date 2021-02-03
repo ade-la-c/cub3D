@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:30:27 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/01/31 19:12:44 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/03 16:56:57 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void					parse_vec(char *line, t_vec *vec, int *parsed, int i)
 	while (line[i] == ' ')
 		i++;
 	vec->y = ft_atoi(&line[i]);
+	if (vec->x <= 0 || vec->y <= 0)
+		exit_error("FILE : resolution can't be zero");
 	parsed++;
 	return ;
 }
@@ -31,19 +33,18 @@ void					parse_vec(char *line, t_vec *vec, int *parsed, int i)
 void					parse_path(char *line, char **path, int *parsed, int i)
 {
 	char				*str;
+	int					j;
 
-	if (*path != NULL)
-		exit_error("FILE : parameter has been entered twice or more");
+	j = -1;
 	str = ft_strtrim(&line[i], " ");
-	while (str[i])
+	while (str[i + ++j])
 	{
-		if (ft_isspace(str[i]))
+		if (ft_isspace(str[i + j]))
 			exit_error("FILE : format error in path parameters");
-		i++;
 	}
-	*path = str;
-	if (!str || str == NULL)
+	if (j < 1)
 		exit_error("FILE : path parameter is incomplete");
+	*path = str;
 	parsed++;
 	return ;
 }
@@ -102,8 +103,6 @@ void					parse_rgb(char *line, t_rgb *rgb, int *parsed, int i)
 
 /*
 **	->tous les paths sont malloqués
-**	->j'arrive pas a faire la sortie d'erreur ou il y a rien dans le parametre
-**	de parse_str :(
 */
 
 void	imprimer_file(t_file *file)
