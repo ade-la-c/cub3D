@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:08:56 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/01/30 18:22:47 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/03 18:56:49 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ static void			lsthub(t_list *lst, t_file *file)
 		parse_rgb(tmp, &file->f, &file->parsed, 1);
 	else if (!ft_strncmp(tmp, "C ", 2))
 		parse_rgb(tmp, &file->c, &file->parsed, 1);
+	else if (file->parsed < 8)
+	{
+		printf("%d\n", file->parsed);	
+		exit_error("FILE : A line is wrong");
+	}
 	return ;
 }
 

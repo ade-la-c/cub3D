@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:30:27 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/03 17:29:35 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/03 18:50:49 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void					parse_vec(char *line, t_vec *vec, int *parsed, int i)
 		exit_error("FILE : resolution value can't be zero");
 	if (vec->x >= 2147483646 || vec->y >= 2147483646)
 		exit_error("FILE : resolution value is too high");
-		parsed++;
+	parsed++;
 	return ;
 }
 
@@ -53,9 +53,9 @@ void					parse_path(char *line, char **path, int *parsed, int i)
 
 static char				**split_rgb(char *line, int i)
 {
-	int				n;
-	int				j;
-	char			**strs;
+	int					n;
+	int					j;
+	char				**strs;
 
 	n = 0;
 	j = 0;
@@ -106,7 +106,7 @@ void					parse_rgb(char *line, t_rgb *rgb, int *parsed, int i)
 /*
 **	->tous les paths sont malloqués
 */
-/*
+
 void	imprimer_file(t_file *file)
 {
 	printf("R %d %d\n", file->r.x, file->r.y);
@@ -120,4 +120,3 @@ void	imprimer_file(t_file *file)
 	printf("\n");
 	return ;
 }
-*/
