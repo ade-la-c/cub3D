@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 16:26:40 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/01/30 16:14:01 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/04 20:54:25 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@ void				t_vec_init(t_vec *vec)
 	vec->y = 0;
 	return ;
 }
+
+void				t_coord_init(t_coord *coord)
+{
+	coord->x = 0;
+	coord->y = 0;
+	return ;
+}
+
 void				exit_error(char *error)
 {
 	ft_putstr(error);

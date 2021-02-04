@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:30:33 by ade-la-c          #+#    #+#             */
-/*   Updated: 2020/12/16 16:35:39 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/04 16:19:38 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,3 +34,12 @@ int				main(void)
 	return (0);
 }
 */
+
+int main(void)
+{
+	char *filepath = "./assets/file.cub";
+
+	file_to_lst(filepath);
+	//	system("leaks Cub3D");
+	return (0);
+}

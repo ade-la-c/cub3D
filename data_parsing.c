@@ -6,14 +6,16 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:30:27 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/03 18:50:49 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/04 18:46:20 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void					parse_vec(char *line, t_vec *vec, int *parsed, int i)
+void					parse_vec(char *line, t_vec *vec, t_file *file, int i)
 {
+	if (vec->x != 0 || vec->y != 0)
+		exit_error("FILE : resolution has been entered twice");
 	while (line[i] == ' ')
 		i++;
 	if (!ft_isdigit(line[i]))
@@ -24,20 +26,21 @@ void					parse_vec(char *line, t_vec *vec, int *parsed, int i)
 	while (line[i] == ' ')
 		i++;
 	vec->y = ft_atoi(&line[i]);
-	if (vec->x <= 0 || vec->y <= 0)
-		exit_error("FILE : resolution value can't be zero");
-	if (vec->x >= 2147483646 || vec->y >= 2147483646)
-		exit_error("FILE : resolution value is too high");
-	parsed++;
+	if (vec->x <= 0 || vec->y <= 0 || vec->x >= 2147483646
+	|| vec->y >= 2147483646)
+		exit_error("FILE : resolution value is not valid");
+	file->parsed++;
 	return ;
 }
 
-void					parse_path(char *line, char **path, int *parsed, int i)
+void					parse_path(char *line, char **path, t_file *file, int i)
 {
 	char				*str;
 	int					j;
 
 	j = -1;
+	if (*path != NULL)
+		exit_error("FILE : path parameter has been entered twice");
 	str = ft_strtrim(&line[i], " ");
 	while (str[i + ++j])
 	{
@@ -47,7 +50,7 @@ void					parse_path(char *line, char **path, int *parsed, int i)
 	if (j < 1)
 		exit_error("FILE : path parameter is incomplete");
 	*path = str;
-	parsed++;
+	file->parsed++;
 	return ;
 }
 
@@ -74,7 +77,7 @@ static char				**split_rgb(char *line, int i)
 	return (strs);
 }
 
-void					parse_rgb(char *line, t_rgb *rgb, int *parsed, int i)
+void					parse_rgb(char *line, t_rgb *rgb, t_file *file, int i)
 {
 	char				**strs;
 	char				*trim[3];
@@ -99,7 +102,7 @@ void					parse_rgb(char *line, t_rgb *rgb, int *parsed, int i)
 	rgb->r = (char)ft_atoi(trim[0]);
 	rgb->g = (char)ft_atoi(trim[1]);
 	rgb->b = (char)ft_atoi(trim[2]);
-	parsed++;
+	file ->parsed++;
 	return ;
 }
 
@@ -107,6 +110,7 @@ void					parse_rgb(char *line, t_rgb *rgb, int *parsed, int i)
 **	->tous les paths sont malloqués
 */
 
+/*
 void	imprimer_file(t_file *file)
 {
 	printf("R %d %d\n", file->r.x, file->r.y);
@@ -120,3 +124,4 @@ void	imprimer_file(t_file *file)
 	printf("\n");
 	return ;
 }
+*/

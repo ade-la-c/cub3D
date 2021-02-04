@@ -6,11 +6,15 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:08:56 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/03 18:56:49 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/04 20:54:51 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/*
+**	lsthub sert de hub pour le parsing des paramètres du .cub
+*/
 
 static void			lsthub(t_list *lst, t_file *file)
 {
@@ -18,32 +22,29 @@ static void			lsthub(t_list *lst, t_file *file)
 
 	tmp = (char *)lst->content;
 	if (!ft_strncmp(tmp, "R ", 2))
-		parse_vec(tmp, &file->r, &file->parsed, 1);
+		return (parse_vec(tmp, &file->r, file, 1));
 	else if (!ft_strncmp(tmp, "NO ", 3))
-		parse_path(tmp, &file->no, &file->parsed, 2);
+		return (parse_path(tmp, &file->no, file, 2));
 	else if (!ft_strncmp(tmp, "SO ", 3))
-		parse_path(tmp, &file->so, &file->parsed, 2);
+		return (parse_path(tmp, &file->so, file, 2));
 	else if (!ft_strncmp(tmp, "WE ", 3))
-		parse_path(tmp, &file->we, &file->parsed, 2);
+		return (parse_path(tmp, &file->we, file, 2));
 	else if (!ft_strncmp(tmp, "EA ", 3))
-		parse_path(tmp, &file->ea, &file->parsed, 2);
+		return (parse_path(tmp, &file->ea, file, 2));
 	else if (!ft_strncmp(tmp, "S ", 2))
-		parse_path(tmp, &file->s, &file->parsed, 1);
+		return (parse_path(tmp, &file->s, file, 1));
 	else if (!ft_strncmp(tmp, "F ", 2))
-		parse_rgb(tmp, &file->f, &file->parsed, 1);
+		return (parse_rgb(tmp, &file->f, file, 1));
 	else if (!ft_strncmp(tmp, "C ", 2))
-		parse_rgb(tmp, &file->c, &file->parsed, 1);
-	else if (file->parsed < 8)
-	{
-		printf("%d\n", file->parsed);	
+		return (parse_rgb(tmp, &file->c, file, 1));
+	else if (tmp[0] && file->parsed < 8)
 		exit_error("FILE : A line is wrong");
-	}
 	return ;
 }
 
 static void			t_file_init(t_file *file)
 {
-	t_vec_init(&file->r);
+	t_coord_init(&file->r);
 	file->no = NULL;
 	file->so = NULL;
 	file->we = NULL;
@@ -54,10 +55,15 @@ static void			t_file_init(t_file *file)
 	file->parsed = 0;
 }
 
+/*
+**	parse_lst envoie la liste a lsthub ligne par ligne
+*/
+
 void				parse_lst(t_list **lst)
 {
 	t_file			file;
 	t_list			*a;
+//	t_map			map;
 
 	a = *lst;
 	t_file_init(&file);
@@ -66,9 +72,18 @@ void				parse_lst(t_list **lst)
 		lsthub(a, &file);
 		a = a->next;
 	}
-	imprimer_file(&file);
+//	if (file.parsed == 8)
+//	{
+//		file.map_start = *lst;
+//		map_parsing(lst, &file, &map);
+//	}
+//imprimer_file(&file);
 	return ;
 }
+
+/*
+**	file_to_lst convertit le fichier .cub en t_list afin de parser les données
+*/
 
 void				file_to_lst(char *filepath)
 {
@@ -93,13 +108,4 @@ void				file_to_lst(char *filepath)
 	close(fd);
 	parse_lst(lst);
 	return ;
-}
-
-int					main(void)
-{
-	char			*filepath = "./assets/file.cub";
-
-	file_to_lst(filepath);
-//	system("leaks Cub3D");
-	return (0);
 }
