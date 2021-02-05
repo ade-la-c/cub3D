@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 17:41:20 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/04 20:59:03 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/05 16:58:43 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ typedef struct		s_file
 	t_rgb			f;
 	t_rgb			c;
 	int				parsed;
-	t_list			*map_start;
 }					t_file;
 
 typedef struct		s_map
@@ -67,24 +66,36 @@ typedef struct		s_map
 	t_vec			vec;
 	int				width;
 	int				height;
-	int				**real_map;
-	t_rgb			wall;
+	int				**map;
+	t_rgb			wall_color;
 	int				pos;
 	int				**actual_pos;
 }					t_map;
 
+typedef struct		s_pos
+{
+	int				x;
+	t_vec			dir;
+	t_vec			old_dir;
+	t_vec			plane_cam;
+	t_vec			old_pl_cam;
+	t_vec			camera;
+}					t_pos;
+
 void				t_rgb_init(t_rgb *rgb);
+void				t_coord_init(t_coord *coord);
 void				t_vec_init(t_vec *vec);
 void				exit_error(char *error);
 int					ft_isspace(char c);
 
 void				file_to_lst(char *filepath);
-void				parse_lst(t_list **lst);
 
-void				parse_vec(char *line, t_vec *vec, t_file *file, int i);
+void				parse_res(char *line, t_coord *res, t_file *file, int i);
 void				parse_path(char *line, char **path, t_file *file, int i);
 void				parse_rgb(char *line, t_rgb *rgb, t_file *file, int i);
 
+void				map_parsing(t_list *lst, t_file *file, t_map *map,
+					t_pos *pos);
 void	imprimer_file(t_file *file);
 
 #endif

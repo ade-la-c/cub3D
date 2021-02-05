@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:08:56 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/04 20:54:51 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/05 18:53:47 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void			lsthub(t_list *lst, t_file *file)
 
 	tmp = (char *)lst->content;
 	if (!ft_strncmp(tmp, "R ", 2))
-		return (parse_vec(tmp, &file->r, file, 1));
+		return (parse_res(tmp, &file->r, file, 1));
 	else if (!ft_strncmp(tmp, "NO ", 3))
 		return (parse_path(tmp, &file->no, file, 2));
 	else if (!ft_strncmp(tmp, "SO ", 3))
@@ -59,25 +59,24 @@ static void			t_file_init(t_file *file)
 **	parse_lst envoie la liste a lsthub ligne par ligne
 */
 
-void				parse_lst(t_list **lst)
+static void			parse_lst(t_list **lst)
 {
 	t_file			file;
 	t_list			*a;
-//	t_map			map;
+	t_list			*b;
+	t_map			map;
+	t_pos			pos;
 
 	a = *lst;
+	b = *lst;
 	t_file_init(&file);
 	while (a)
 	{
 		lsthub(a, &file);
 		a = a->next;
 	}
-//	if (file.parsed == 8)
-//	{
-//		file.map_start = *lst;
-//		map_parsing(lst, &file, &map);
-//	}
-//imprimer_file(&file);
+	if (file.parsed == 8)
+		map_parsing(b, &file, &map, &pos);		//imprimer_file(&file);
 	return ;
 }
 
