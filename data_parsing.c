@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:30:27 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/05 17:48:04 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/10 15:10:45 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void					parse_rgb(char *line, t_rgb *rgb, t_file *file, int i)
 }
 
 /*
-**	->tous les paths sont malloqués
+**	->	tous les paths sont malloqués	<-
 */
 
 // void	imprimer_file(t_file *file)

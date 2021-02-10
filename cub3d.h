@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 17:41:20 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/05 16:58:43 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/10 15:40:45 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ typedef struct		s_file
 typedef struct		s_map
 {
 	t_coord			iter;
-	t_vec			vec;
+	t_vec			pos;
 	int				width;
 	int				height;
 	int				**map;
 	t_rgb			wall_color;
-	int				pos;
+	int				position;
 	int				**actual_pos;
 }					t_map;
 
@@ -96,6 +96,10 @@ void				parse_rgb(char *line, t_rgb *rgb, t_file *file, int i);
 
 void				map_parsing(t_list *lst, t_file *file, t_map *map,
 					t_pos *pos);
+void				dir_to_vec(int i, t_pos *pos);
+
+void				verif_map(t_map *map);
+
 void	imprimer_file(t_file *file);
 
 #endif

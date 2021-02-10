@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:08:56 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/05 18:53:47 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/08 17:43:20 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,22 +63,22 @@ static void			parse_lst(t_list **lst)
 {
 	t_file			file;
 	t_list			*a;
-	t_list			*b;
 	t_map			map;
 	t_pos			pos;
 
 	a = *lst;
-	b = *lst;
 	t_file_init(&file);
-	while (a)
+	while (a && file.parsed < 8)
 	{
 		lsthub(a, &file);
 		a = a->next;
 	}
 	if (file.parsed == 8)
-		map_parsing(b, &file, &map, &pos);		//imprimer_file(&file);
+	{
+		map_parsing(a, &file, &map, &pos);
+	} //imprimer_file(&file);
 	return ;
-}
+	}
 
 /*
 **	file_to_lst convertit le fichier .cub en t_list afin de parser les données
