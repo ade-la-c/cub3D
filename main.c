@@ -6,40 +6,22 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:30:33 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/04 16:19:38 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/11 21:22:22 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-/*
-int				main(void)
+
+int main(int ac, char **av)
 {
-	void		*mlx_ptr;
-	void		*window;
-	void		*image;
-	int			bpp;
-	int			sl;
-	int			endian;
-	char		*image_data;
-
-	mlx_ptr = mlx_init();
-	window = mlx_new_window(mlx_ptr, 600, 600, "oui");
-	image = mlx_new_image(mlx_ptr, 100, 100);
-	image_data = mlx_get_data_addr(image, &bpp, &sl, &endian);
-	image_data[0] = 0;
-	image_data[1] = 0;
-	image_data[2] = (char)255;
-	mlx_put_image_to_window(mlx_ptr, window, image, 150, 150);
-	mlx_loop(mlx_ptr);
-	return (0);
-}
-*/
-
-int main(void)
-{
-	char *filepath = "./assets/file.cub";
-
-	file_to_lst(filepath);
-	//	system("leaks Cub3D");
+	file_to_lst(av[1]);
+	if (!(ac == 2 || ac == 3))
+		exit_error("too many / too few main arguments");
+	file_to_lst((char *)av[1]);
+	if (ac == 2 || (ac == 3 && !ft_strncmp((char *)av[2], "--save", 7)))
+	{
+		hook_loop();
+	}
+//	system("leaks Cub3D");
 	return (0);
 }

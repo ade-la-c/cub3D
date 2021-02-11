@@ -6,7 +6,7 @@
 #    By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 17:00:24 by ade-la-c          #+#    #+#              #
-#    Updated: 2021/02/11 16:54:55 by ade-la-c         ###   ########.fr        #
+#    Updated: 2021/02/11 21:15:28 by ade-la-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME			= Cub3D
 SRCS			= includes/get_next_line/get_next_line.c \
 				includes/get_next_line/get_next_line_utils.c \
 				main.c srcs/utils.c \
-				srcs/parsing/file_init.c \
+				srcs/parsing/file_parsing.c \
 				srcs/parsing/data_parsing.c \
 				srcs/parsing/map_parsing.c \
 				srcs/parsing/map_verif.c \
