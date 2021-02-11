@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 17:41:20 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/11 16:34:48 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/11 16:52:05 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 # include <fcntl.h>
 # include <float.h>
 
-# include "libft/libft.h"
-# include "get_next_line/get_next_line.h"
-# include "mlx/mlx.h"
+# include "includes/libft/libft.h"
+# include "includes/get_next_line/get_next_line.h"
+# include "includes/mlx/mlx.h"
 
 typedef struct		s_rgb
 {
