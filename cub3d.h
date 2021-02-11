@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 17:41:20 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/10 15:40:45 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/11 16:34:48 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,17 +88,19 @@ void				t_vec_init(t_vec *vec);
 void				exit_error(char *error);
 int					ft_isspace(char c);
 
-void				file_to_lst(char *filepath);
+/*
+**	FILE PARSING
+*/
 
+void				file_to_lst(char *filepath);
 void				parse_res(char *line, t_coord *res, t_file *file, int i);
 void				parse_path(char *line, char **path, t_file *file, int i);
 void				parse_rgb(char *line, t_rgb *rgb, t_file *file, int i);
-
 void				map_parsing(t_list *lst, t_file *file, t_map *map,
 					t_pos *pos);
 void				dir_to_vec(int i, t_pos *pos);
-
 void				verif_map(t_map *map);
+
 
 void	imprimer_file(t_file *file);
 
