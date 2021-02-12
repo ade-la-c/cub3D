@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 17:41:20 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/11 16:52:05 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/12 18:23:45 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,21 @@
 # include "includes/libft/libft.h"
 # include "includes/get_next_line/get_next_line.h"
 # include "includes/mlx/mlx.h"
+
+# define MS 0.1
+# define RS 0.1
+
+# define XEVENT_KEYPRESS 2
+# define XEVENT_KEYRELEASE 3
+# define XEVENT_EXIT 17
+
+# define KEYCODE_ESC 53
+# define KEYCODE_RIGHTARROW 124
+# define KEYCODE_LEFTARROW 123
+# define KEYCODE_W 13
+# define KEYCODE_A 0
+# define KEYCODE_S 1
+# define KEYCODE_D 2
 
 typedef struct		s_rgb
 {
@@ -47,6 +62,17 @@ typedef struct		s_coord
 	int				y;
 }					t_coord;
 
+typedef struct		s_tex
+{
+	void			*img;
+	int				*addr;
+	int				height;
+	int				width;
+	int				line_length;
+	int				bit;
+	int				endian;
+}					t_tex;
+
 typedef struct		s_file
 {
 	t_coord			r;
@@ -58,7 +84,23 @@ typedef struct		s_file
 	t_rgb			f;
 	t_rgb			c;
 	int				parsed;
+	t_tex			north;
+	t_tex			south;
+	t_tex			west;
+	t_tex			east;
 }					t_file;
+
+typedef struct		s_mlibx
+{
+	int				bits_per_pxl;
+	int				line_length;
+	int				endian;
+	int				*addr;
+	void			*mlx;
+	void			*mlx_ptr;
+	void			*mlx_win;
+	void			*img;
+}					t_mlibx;
 
 typedef struct		s_map
 {
@@ -82,6 +124,15 @@ typedef struct		s_pos
 	t_vec			camera;
 }					t_pos;
 
+typedef struct		s_glb
+{
+	t_tex			tex;
+	t_file			file;
+	t_mlibx			mlibx;
+	t_map			map;
+	t_pos			pos;
+}					t_glb;
+
 void				t_rgb_init(t_rgb *rgb);
 void				t_coord_init(t_coord *coord);
 void				t_vec_init(t_vec *vec);
@@ -92,7 +143,7 @@ int					ft_isspace(char c);
 **	FILE PARSING
 */
 
-void				file_to_lst(char *filepath);
+t_glb				*parsing(char *filepath, t_glb *glb);
 void				parse_res(char *line, t_coord *res, t_file *file, int i);
 void				parse_path(char *line, char **path, t_file *file, int i);
 void				parse_rgb(char *line, t_rgb *rgb, t_file *file, int i);
@@ -101,6 +152,11 @@ void				map_parsing(t_list *lst, t_file *file, t_map *map,
 void				dir_to_vec(int i, t_pos *pos);
 void				verif_map(t_map *map);
 
+/*
+**	les hook et les loop
+*/
+
+void				hook_loop(int ac);
 
 void	imprimer_file(t_file *file);
 

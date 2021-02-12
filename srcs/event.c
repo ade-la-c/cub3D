@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/09 16:30:33 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/12 18:17:08 by ade-la-c         ###   ########.fr       */
+/*   Created: 2021/02/12 16:20:39 by ade-la-c          #+#    #+#             */
+/*   Updated: 2021/02/12 17:48:02 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-int					main(int ac, char **av)
+void					hook_loop(int ac)
 {
-	t_glb			*glb;
+	t_mlibx				mlibx;
 
-	if (!(ac == 2 || ac == 3))
-		exit_error("too many / too few main arguments");
-	glb = parsing((char *)av[1], glb);
-	if (ac == 2 || (ac == 3 && !ft_strncmp((char *)av[2], "--save", 7)))
+	if (ac == 2);
 	{
-		hook_loop();
+		minilibx_setup(mlibx);
 	}
-	if (ac == 3 && ft_strncmp((char *)av[2], "--save", 7))
-		exit_error("argc[3] must be --save");
-//	system("leaks Cub3D");
-	return (0);
+	return ;
 }

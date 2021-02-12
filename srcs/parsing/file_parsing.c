@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_init.c                                        :+:      :+:    :+:   */
+/*   file_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:08:56 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/11 16:47:40 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/12 18:35:10 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 **	lsthub sert de hub pour le parsing des paramètres du .cub
 */
 
-static void			lsthub(t_list *lst, t_file *file)
+static void					lsthub(t_list *lst, t_file *file)
 {
-	char			*tmp;
+	char					*tmp;
 
 	tmp = (char *)lst->content;
 	if (!ft_strncmp(tmp, "R ", 2))
@@ -42,7 +42,7 @@ static void			lsthub(t_list *lst, t_file *file)
 	return ;
 }
 
-static void			t_file_init(t_file *file)
+static void					t_file_init(t_file *file)
 {
 	t_coord_init(&file->r);
 	file->no = NULL;
@@ -53,18 +53,20 @@ static void			t_file_init(t_file *file)
 	t_rgb_init(&file->f);
 	t_rgb_init(&file->c);
 	file->parsed = 0;
+	return ;
 }
 
 /*
 **	parse_lst envoie la liste a lsthub ligne par ligne
 */
 
-static void			parse_lst(t_list **lst)
+static t_glb				*parse_lst(t_list **lst)
 {
-	t_file			file;
-	t_list			*a;
-	t_map			map;
-	t_pos			pos;
+	t_file					file;
+	t_map					map;
+	t_pos					pos;
+	t_glb					*glb;
+	t_list					*a;
 
 	a = *lst;
 	t_file_init(&file);
@@ -74,22 +76,21 @@ static void			parse_lst(t_list **lst)
 		a = a->next;
 	}
 	if (file.parsed == 8)
-	{
-		map_parsing(a, &file, &map, &pos);
-	} //imprimer_file(&file);
-	return ;
-	}
+		glb = map_parsing(a, &file, &map, &pos); 
+	//imprimer_file(&file);
+	return (glb);
+}
 
 /*
-**	file_to_lst convertit le fichier .cub en t_list afin de parser les données
+**	file_to_lst convertit le fichier .cub en t_list
 */
 
-void				file_to_lst(char *filepath)
+static t_list				*file_to_lst(char *filepath)
 {
-	t_list			**lst;
-	t_list			*el;
-	char			*line;
-	int				fd;
+	t_list					**lst;
+	t_list					*el;
+	char					*line;
+	int						fd;
 
 	
 	if (!((lst = malloc(sizeof(t_list *)))))
@@ -105,6 +106,11 @@ void				file_to_lst(char *filepath)
 	el = ft_lstnew(line);
 	ft_lstadd_back(lst, el);
 	close(fd);
-	parse_lst(lst);
-	return ;
+	return (lst);
+}
+
+t_glb						*parsing(char *filepath, t_glb *glb)
+{
+	glb = parse_lst(file_to_lst(filepath));
+	return (glb);
 }

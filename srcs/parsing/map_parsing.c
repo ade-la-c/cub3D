@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 17:33:10 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/11 16:47:34 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/12 18:52:30 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ static t_map			*get_map_hw(t_map *map, t_list *lst)
 **	map_parsing s'occupe de malloc toute la map dans map->map
 */
 
-void					map_parsing(t_list *lst, t_file *file, t_map *map,
+t_glb					map_parsing(t_list *lst, t_file *file, t_map *map,
 									t_pos *pos)
 {
 	file->parsed = 9;
@@ -119,12 +119,12 @@ void					map_parsing(t_list *lst, t_file *file, t_map *map,
 	map = get_map_hw(map, lst);
 	map->map = (int **)malloc(sizeof(int *) * map->height);
 	if (!map->map)
-		return (exit_error("Crash malloc"));
+		exit_error("Crash malloc"));
 	while (map->iter.x < map->height)
 	{
 		map->map[map->iter.x] = (int *)malloc(sizeof(int) * map->width);
 		if (!map->map[map->iter.x])
-			return (exit_error("Crash malloc"));
+			exit_error("Crash malloc"));
 		ft_memset(map->map[map->iter.x], -1, map->width * sizeof(int));
 		map->iter.x++;
 	}
