@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 17:41:20 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/12 18:23:45 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/15 19:20:34 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct		s_file
 	t_rgb			f;
 	t_rgb			c;
 	int				parsed;
+	t_list			*lst;
 	t_tex			north;
 	t_tex			south;
 	t_tex			west;
@@ -100,6 +101,7 @@ typedef struct		s_mlibx
 	void			*mlx_ptr;
 	void			*mlx_win;
 	void			*img;
+	int				pxl_line;
 }					t_mlibx;
 
 typedef struct		s_map
@@ -126,11 +128,11 @@ typedef struct		s_pos
 
 typedef struct		s_glb
 {
-	t_tex			tex;
-	t_file			file;
-	t_mlibx			mlibx;
-	t_map			map;
-	t_pos			pos;
+	t_tex			*tex;
+	t_file			*file;
+	t_mlibx			*mlibx;
+	t_map			*map;
+	t_pos			*pos;
 }					t_glb;
 
 void				t_rgb_init(t_rgb *rgb);
@@ -147,8 +149,7 @@ t_glb				*parsing(char *filepath, t_glb *glb);
 void				parse_res(char *line, t_coord *res, t_file *file, int i);
 void				parse_path(char *line, char **path, t_file *file, int i);
 void				parse_rgb(char *line, t_rgb *rgb, t_file *file, int i);
-void				map_parsing(t_list *lst, t_file *file, t_map *map,
-					t_pos *pos);
+t_map				*map_parsing(t_list *lst, t_glb *glb);
 void				dir_to_vec(int i, t_pos *pos);
 void				verif_map(t_map *map);
 
@@ -156,7 +157,19 @@ void				verif_map(t_map *map);
 **	les hook et les loop
 */
 
-void				hook_loop(int ac);
+void				hook_loop(int ac, t_glb *glb);
+void				free_file(t_file *file, char *str);
+
+/*
+**	VISUAL PART
+*/
+
+void				mv_forward(t_pos *pos, t_map *map);
+void				mv_backward(t_pos *pos, t_map *map);
+void				mv_left(t_pos *pos, t_map *map);
+void				mv_right(t_pos *pos, t_map *map);
+void				rotate_right(t_pos *pos);
+void				rotate_left(t_pos *pos);
 
 void	imprimer_file(t_file *file);
 

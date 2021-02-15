@@ -44,4 +44,6 @@ SERIOUS SHIT
 	->	Prototyper les fonctions de file_parsing.c, map_parsing.c et map_verif.c
 		le tout dans la fonction parsing comme hub principal de la totalité
 		du parsing
+
+	->possible leak de malloc dans file_parsing.c file_to_lst
 }

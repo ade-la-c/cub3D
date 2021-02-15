@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:08:56 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/12 18:35:10 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/13 17:08:34 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,28 +57,24 @@ static void					t_file_init(t_file *file)
 }
 
 /*
-**	parse_lst envoie la liste a lsthub ligne par ligne
+**	param_parsing envoie la liste a lsthub ligne par ligne
 */
 
-static t_glb				*parse_lst(t_list **lst)
+static t_file				*param_parsing(t_list **lst)
 {
-	t_file					file;
-	t_map					map;
-	t_pos					pos;
-	t_glb					*glb;
+	t_file					*file;
 	t_list					*a;
 
 	a = *lst;
 	t_file_init(&file);
-	while (a && file.parsed < 8)
+	while (a && file->parsed < 8)
 	{
 		lsthub(a, &file);
 		a = a->next;
 	}
-	if (file.parsed == 8)
-		glb = map_parsing(a, &file, &map, &pos); 
+	file->lst = a;
 	//imprimer_file(&file);
-	return (glb);
+	return (file);
 }
 
 /*
@@ -92,9 +88,9 @@ static t_list				*file_to_lst(char *filepath)
 	char					*line;
 	int						fd;
 
-	
-	if (!((lst = malloc(sizeof(t_list *)))))
-		return ;
+	lst = malloc(sizeof(t_list *));
+	if (!lst)
+		exit_error("malloc : crash");
 	*lst = NULL;
 	if (!(fd = open(filepath, O_RDONLY)))
 		return ;
@@ -111,6 +107,11 @@ static t_list				*file_to_lst(char *filepath)
 
 t_glb						*parsing(char *filepath, t_glb *glb)
 {
-	glb = parse_lst(file_to_lst(filepath));
+	glb->file = param_parsing(file_to_lst(filepath));
+	if (glb->file->parsed == 8)
+	{
+		glb->file->parsed++;
+		glb->map = map_parsing(glb->file->lst, glb);
+	}
 	return (glb);
 }

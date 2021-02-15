@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 17:33:10 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/12 18:52:30 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/13 16:49:07 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,29 +110,29 @@ static t_map			*get_map_hw(t_map *map, t_list *lst)
 **	map_parsing s'occupe de malloc toute la map dans map->map
 */
 
-t_glb					map_parsing(t_list *lst, t_file *file, t_map *map,
-									t_pos *pos)
+t_map					*map_parsing(t_list *lst, t_glb *glb)
 {
-	file->parsed = 9;
 	while (lst && !((char*)lst->content)[0])
 		lst = lst->next;
-	map = get_map_hw(map, lst);
-	map->map = (int **)malloc(sizeof(int *) * map->height);
-	if (!map->map)
-		exit_error("Crash malloc"));
-	while (map->iter.x < map->height)
+	glb->map = get_map_hw(glb->map, lst);
+	glb->map->map = (int **)malloc(sizeof(int *) * glb->map->height);
+	if (!glb->map->map)
+		exit_error("malloc : crash");
+	while (glb->map->iter.x < glb->map->height)
 	{
-		map->map[map->iter.x] = (int *)malloc(sizeof(int) * map->width);
-		if (!map->map[map->iter.x])
-			exit_error("Crash malloc"));
-		ft_memset(map->map[map->iter.x], -1, map->width * sizeof(int));
-		map->iter.x++;
+		glb->map->map[glb->map->iter.x] = (int *)malloc(sizeof(int) *
+		glb->map->width);
+		if (!glb->map->map[glb->map->iter.x])
+			exit_error("malloc : crash");
+		ft_memset(glb->map->map[glb->map->iter.x], -1,
+		glb->map->width * sizeof(int));
+		glb->map->iter.x++;
 	}
-	map = map_iter(map, lst, pos);
-	if (map->position != 1)
+	glb->map = map_iter(glb->map, lst, glb->pos);
+	if (glb->map->position != 1)
 		exit_error("FILE : too many / too few positions in the map");
-	verif_map(map);
-	return ;
+	verif_map(glb->map);
+	return (glb->map);
 }
 
 /*
