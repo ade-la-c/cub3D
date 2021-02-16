@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 17:41:20 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/15 19:20:34 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/16 19:49:46 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct		s_tex
 
 typedef struct		s_file
 {
-	t_coord			r;
+	t_coord			r; //x == width, y == height
 	char			*no;
 	char			*so;
 	char			*we;
@@ -126,6 +126,43 @@ typedef struct		s_pos
 	t_vec			camera;
 }					t_pos;
 
+typedef struct		s_spr
+{
+	int				*sp_order;
+	double			*sp_dist;
+	int				numsprite;
+	t_vec			spr;
+	t_vec			transform;
+	double			invdir;
+	int				screenx;
+	int				vmovesc;
+	int				width;
+	int				height;
+	t_vec			dwstart;
+	t_vec			dwend;
+	int				stripe;
+	t_coord			tex;
+	int				y;
+	int				d;
+	int				*zbuff;
+	int				numsprite;
+}					t_spr;
+
+typedef struct		s_move
+{
+	int				hit;
+	int				side;
+	int				line_h;
+	int				draw_start;
+	int				draw_end;
+	int				perp_wall_dist;
+	t_vec			dir;
+	t_vec			map;
+	t_vec			step;
+	t_vec			d_dist;
+	t_vec			side_dist;
+}					t_move;
+
 typedef struct		s_glb
 {
 	t_tex			*tex;
@@ -133,13 +170,21 @@ typedef struct		s_glb
 	t_mlibx			*mlibx;
 	t_map			*map;
 	t_pos			*pos;
+	t_spr			*spr;
+	t_move			*move;
 }					t_glb;
+
+/*
+**	utils
+*/
 
 void				t_rgb_init(t_rgb *rgb);
 void				t_coord_init(t_coord *coord);
 void				t_vec_init(t_vec *vec);
 void				exit_error(char *error);
+void				free_file(t_file *file, char *str);
 int					ft_isspace(char c);
+void				minilibx_setup(t_mlibx *mlx, t_file *file);
 
 /*
 **	FILE PARSING
@@ -158,7 +203,6 @@ void				verif_map(t_map *map);
 */
 
 void				hook_loop(int ac, t_glb *glb);
-void				free_file(t_file *file, char *str);
 
 /*
 **	VISUAL PART
@@ -170,6 +214,13 @@ void				mv_left(t_pos *pos, t_map *map);
 void				mv_right(t_pos *pos, t_map *map);
 void				rotate_right(t_pos *pos);
 void				rotate_left(t_pos *pos);
+
+/*
+**	RAYCASTING ALGORYTHM
+*/
+
+int					algo_raycasting(t_glb *glb);
+
 
 void	imprimer_file(t_file *file);
 

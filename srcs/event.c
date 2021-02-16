@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:20:39 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/15 19:51:03 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/16 14:41:42 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,12 @@ void					hook_loop(int ac, t_glb *glb)
 				(void *)glb);
 		mlx_hook(glb->mlibx->mlx_win, XEVENT_EXIT, 0, &exit_hook, (void *)glb);
 		mlx_loop_hook(glb->mlibx->mlx_ptr, &ft_test, (void *)glb);
+		mlx_loop(glb->mlibx->mlx_ptr);
+	}
+	if (ac == 3)
+	{
+		minilibx_setup(glb->mlibx, glb->file);
+		algo_raycasting(glb);
 	}
 	return ;
 }
