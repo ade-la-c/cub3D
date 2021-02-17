@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 17:41:20 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/16 19:49:46 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/17 19:58:03 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,10 @@ typedef struct		s_map
 	t_rgb			wall_color;
 	int				position;
 	int				**actual_pos;
+	double			*spr_x;
+	double			*spr_y;
+	u_int32_t		colorf;
+	u_int32_t		colorc;
 }					t_map;
 
 typedef struct		s_pos
@@ -145,7 +149,6 @@ typedef struct		s_spr
 	int				y;
 	int				d;
 	int				*zbuff;
-	int				numsprite;
 }					t_spr;
 
 typedef struct		s_move
@@ -165,7 +168,6 @@ typedef struct		s_move
 
 typedef struct		s_glb
 {
-	t_tex			*tex;
 	t_file			*file;
 	t_mlibx			*mlibx;
 	t_map			*map;
@@ -178,13 +180,14 @@ typedef struct		s_glb
 **	utils
 */
 
-void				t_rgb_init(t_rgb *rgb);
+void				t_rgb_init(t_rgb rgb);
 void				t_coord_init(t_coord *coord);
 void				t_vec_init(t_vec *vec);
 void				exit_error(char *error);
 void				free_file(t_file *file, char *str);
 int					ft_isspace(char c);
 void				minilibx_setup(t_mlibx *mlx, t_file *file);
+void				minilibx_pxl_put(t_mlibx *mlibx, int x, int y, u_int32_t c);
 
 /*
 **	FILE PARSING
@@ -220,6 +223,11 @@ void				rotate_left(t_pos *pos);
 */
 
 int					algo_raycasting(t_glb *glb);
+void				init_struct(t_move *move, t_map *map);
+void				condition_ray(t_move *move, t_map *map);
+void				move_square(t_move*move, t_map *map);
+void				pxl_to_fill(t_move *move, t_file *file, t_map *map);
+//void				img_sprite(t_glb *glb);
 
 
 void	imprimer_file(t_file *file);

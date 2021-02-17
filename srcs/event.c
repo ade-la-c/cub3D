@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:20:39 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/16 14:41:42 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/17 17:51:34 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@ static int				exit_hook(void *x)
 static int				keyrelease_hook(int key, t_glb *glb)
 {
 	if (key == KEYCODE_ESC)
-		ft_error_exit("Merci pour les services.");
+		exit_error("Merci pour les services.");
 	if (key == KEYCODE_W)
-		ft_mvforward(glb->pos, glb->map);
+		mv_forward(glb->pos, glb->map);
 	if (key == KEYCODE_S)
-		ft_mvbackward(glb->pos, glb->map);
+		mv_backward(glb->pos, glb->map);
 	if (key == KEYCODE_A)
-		ft_mvleft(glb->pos, glb->map);
+		mv_left(glb->pos, glb->map);
 	if (key == KEYCODE_D)
-		ft_mvright(glb->pos, glb->map);
+		mv_right(glb->pos, glb->map);
 	if (key == KEYCODE_RIGHTARROW)
-		ft_rotate_right(glb->pos);
+		rotate_right(glb->pos);
 	if (key == KEYCODE_LEFTARROW)
-		ft_rotate_left(glb->pos);
+		rotate_left(glb->pos);
 	return (0);
 }
 
@@ -42,7 +42,7 @@ static int				keypress_hook(int key, t_glb *glb)
 	if (key == KEYCODE_ESC)
 		exit_error("Merci pour les services.");
 	if (key == KEYCODE_W)
-		ft_mvforward(glb->pos, glb->map);
+		mv_forward(glb->pos, glb->map);
 	if (key == KEYCODE_S)
 		mv_backward(glb->pos, glb->map);
 	if (key == KEYCODE_A)
@@ -63,7 +63,7 @@ int						ft_test(t_glb *glb)
 	key = 36;
 	keypress_hook(key, glb);
 	keyrelease_hook(key, glb);
-	affichage(glb);
+	algo_raycasting(glb);
 	mlx_put_image_to_window(glb->mlibx->mlx_ptr, glb->mlibx->mlx_win,
 							glb->mlibx->img, 0, 0);
 	return (1);

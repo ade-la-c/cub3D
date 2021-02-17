@@ -1,23 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/10 19:09:09 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/17 16:03:17 by ade-la-c         ###   ########.fr       */
+/*   Created: 2021/02/17 20:02:53 by ade-la-c          #+#    #+#             */
+/*   Updated: 2021/02/17 20:03:06 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../cub3d.h"
 
-void		*ft_calloc(size_t count, size_t size)
-{
-	void	*str;
-
-	if (!(str = (malloc(sizeof(size) * count))))
-		return (NULL);
-	ft_bzero(str, count * size);
-	return (str);
-}

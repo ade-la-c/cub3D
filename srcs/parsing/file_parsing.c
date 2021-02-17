@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:08:56 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/13 17:08:34 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/17 17:27:07 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,8 @@ static void					lsthub(t_list *lst, t_file *file)
 static void					t_file_init(t_file *file)
 {
 	t_coord_init(&file->r);
-	file->no = NULL;
-	file->so = NULL;
-	file->we = NULL;
-	file->ea = NULL;
-	file->s = NULL;
-	t_rgb_init(&file->f);
-	t_rgb_init(&file->c);
+	t_rgb_init(file->f);
+	t_rgb_init(file->c);
 	file->parsed = 0;
 	return ;
 }
@@ -60,16 +55,15 @@ static void					t_file_init(t_file *file)
 **	param_parsing envoie la liste a lsthub ligne par ligne
 */
 
-static t_file				*param_parsing(t_list **lst)
+static t_file				*param_parsing(t_list **lst, t_file *file)
 {
-	t_file					*file;
 	t_list					*a;
 
 	a = *lst;
-	t_file_init(&file);
+	t_file_init(file);
 	while (a && file->parsed < 8)
 	{
-		lsthub(a, &file);
+		lsthub(a, file);
 		a = a->next;
 	}
 	file->lst = a;
@@ -81,7 +75,7 @@ static t_file				*param_parsing(t_list **lst)
 **	file_to_lst convertit le fichier .cub en t_list
 */
 
-static t_list				*file_to_lst(char *filepath)
+static t_list				**file_to_lst(char *filepath)
 {
 	t_list					**lst;
 	t_list					*el;
@@ -93,7 +87,7 @@ static t_list				*file_to_lst(char *filepath)
 		exit_error("malloc : crash");
 	*lst = NULL;
 	if (!(fd = open(filepath, O_RDONLY)))
-		return ;
+		exit_error("open : crash");
 	while (get_next_line(fd, &line) > 0)
 	{
 		el = ft_lstnew(line);
@@ -107,7 +101,7 @@ static t_list				*file_to_lst(char *filepath)
 
 t_glb						*parsing(char *filepath, t_glb *glb)
 {
-	glb->file = param_parsing(file_to_lst(filepath));
+	glb->file = param_parsing(file_to_lst(filepath), glb->file);
 	if (glb->file->parsed == 8)
 	{
 		glb->file->parsed++;

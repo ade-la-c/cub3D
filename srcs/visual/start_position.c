@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 19:34:31 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/16 20:18:41 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/17 19:47:01 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,25 +109,3 @@ void						pxl_to_fill(t_move *move, t_file *file, t_map *map)
 		move->draw_end = file->r.y - 1;
 	return ;
 }
-
-// void		color_assign(t_map *map, t_move *move, t_file *file)
-// {
-// 	if (map->map[(int)move->map.x][(int)move->map.y] == 1)
-// 	{
-// 		map->wall_color.r = 0x00800000;
-// 		map->wall_color.g = 0;
-// 		map->wall_color.b = B;
-// 	}
-// 	else if (map->map[(int)move->map.x][(int)move->map.y] == 2)
-// 	{
-// 		map->wall_color.r = 0;
-// 		map->wall_color.g = G;
-// 		map->wall_color.b = 0;
-// 	}
-// 	map->colorc = data->b_sky + data->g_sky * 256 + data->r_sky * 65536;
-// 	map->colorf = data->b_ground + data->g_ground * 256 + data->r_ground * 65536;
-// }
-
-/*
-**	color assign ça a géchan
-*/

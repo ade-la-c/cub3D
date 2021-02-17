@@ -6,7 +6,7 @@
 #    By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 17:00:24 by ade-la-c          #+#    #+#              #
-#    Updated: 2021/02/15 19:00:39 by ade-la-c         ###   ########.fr        #
+#    Updated: 2021/02/17 19:00:54 by ade-la-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,16 +15,19 @@ NAME			= Cub3D
 SRCS			= includes/get_next_line/get_next_line.c \
 				includes/get_next_line/get_next_line_utils.c \
 				srcs/main.c \
-				srcs/utils/utils.c \
-				srcs/utils/utils_2.c \
-				srcs/utils/minilibx_utils.c \
 				srcs/parsing/file_parsing.c \
 				srcs/parsing/data_parsing.c \
 				srcs/parsing/map_parsing.c \
 				srcs/parsing/map_verif.c \
+				srcs/utils/utils.c \
+				srcs/utils/utils_2.c \
+				srcs/utils/minilibx_utils.c \
 				srcs/event.c \
 				srcs/visual/movement.c \
 				srcs/visual/rotation.c \
+				srcs/visual/algo_raycasting.c \
+				srcs/visual/start_position.c \
+				#srcs/visual/sprite.c \
 
 OBJS			= $(SRCS:.c=.o)
 
