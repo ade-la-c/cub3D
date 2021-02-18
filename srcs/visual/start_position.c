@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 19:34:31 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/17 19:47:01 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/18 16:29:57 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ void						init_struct(t_move *move, t_map *map)
 	return ;
 }
 
+/*
+**	condition_ray calculates step & initial side_dist
+*/
+
 void						condition_ray(t_move *move, t_map *map)
 {
 	if (move->dir.x < 0)
@@ -69,6 +73,12 @@ void						condition_ray(t_move *move, t_map *map)
 	return ;
 }
 
+/*
+**	move_square performs "DDA"
+**	jumping to the next square (or x/y direction)
+**	checks if ray has hit a wall
+*/
+
 void						move_square(t_move *move, t_map *map)
 {
 	move->side = 0;
@@ -91,6 +101,12 @@ void						move_square(t_move *move, t_map *map)
 	}
 	return ;
 }
+
+/*
+**	pxl_to_fill calculates : the distance projected on camera diretion
+**	(without the fisheye effect), the height of line to draw on screen
+**	and the lowest & highest pixel to fill in current stripe
+*/
 
 void						pxl_to_fill(t_move *move, t_file *file, t_map *map)
 {

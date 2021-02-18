@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 16:26:40 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/17 16:35:37 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/18 16:38:13 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void				t_coord_init(t_coord *coord)
 	return ;
 }
 
-int			ft_isspace(char c)
+int					ft_isspace(char c)
 {
 	if (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f'
 		|| c == '\r')

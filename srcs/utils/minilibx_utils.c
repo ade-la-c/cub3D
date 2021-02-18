@@ -6,11 +6,44 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 17:43:13 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/17 20:00:06 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/18 20:48:40 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
+
+/*
+**	image function transforms the .xpm files 
+*/
+
+void				minilibx_get_image(t_mlibx *mlibx, t_file *file)
+{printf("%p\n", mlibx->mlx_ptr);
+	if (!(file->no.img = mlx_xpm_file_to_image(mlibx->mlx_ptr, file->no.path,
+		&file->no.width, &file->no.height)))
+		exit_error("FILE : Error in texture path (NO)");
+	if (!(file->so.img = mlx_xpm_file_to_image(mlibx->mlx_ptr, file->so.path,
+		&file->so.width, &file->so.height)))
+		exit_error("FILE : Error in texture path (SO)");
+	if (!(file->we.img = mlx_xpm_file_to_image(mlibx->mlx_ptr, file->we.path,
+		&file->we.width, &file->we.height)))
+		exit_error("FILE : Error in texture path (WE)");
+	if (!(file->ea.img = mlx_xpm_file_to_image(mlibx->mlx_ptr, file->ea.path,
+		&file->ea.width, &file->ea.height)))
+		exit_error("FILE : Error in texture path (EA)");
+	if (!(file->s.img = mlx_xpm_file_to_image(mlibx->mlx_ptr, file->s.path,
+		&file->s.width, &file->s.height)))
+		exit_error("FILE : Error in texture path (S)");
+	file->no.addr = (int *)mlx_get_data_addr(file->no.img, &file->no.bit,
+		&file->no.line_length, &file->no.endian);
+	file->so.addr = (int *)mlx_get_data_addr(file->so.img, &file->so.bit,
+		&file->so.line_length, &file->so.endian);
+	file->we.addr = (int *)mlx_get_data_addr(file->we.img, &file->we.bit,
+		&file->we.line_length, &file->we.endian);
+	file->ea.addr = (int *)mlx_get_data_addr(file->ea.img, &file->ea.bit,
+		&file->ea.line_length, &file->ea.endian);
+	file->s.addr = (int *)mlx_get_data_addr(file->s.img, &file->s.bit,
+		&file->s.line_length, &file->s.endian);
+}
 
 /*
 **	Pixel's color
@@ -29,9 +62,12 @@ void				minilibx_pxl_put(t_mlibx *mlibx, int x, int y, u_int32_t c)
 
 void				minilibx_setup(t_mlibx *mlibx, t_file *file)
 {
+	mlibx->mlx_ptr = mlx_init();
+	if (!mlibx->mlx_ptr)
+		exit_error("MLX : crash");
 	if ((mlibx->mlx_win = mlx_new_window(mlibx->mlx_ptr, file->r.x, file->r.y,
 	"CUB3D")) == NULL)
-		free_file(file, "MLX : crash");
+		exit_error("MLX : crash");
 	if ((mlibx->img = mlx_new_image(mlibx->mlx_ptr, file->r.x, file->r.y))
 	== NULL)
 		return ;

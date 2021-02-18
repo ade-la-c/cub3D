@@ -6,11 +6,15 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:35:52 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/17 20:02:16 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/18 19:25:06 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
+
+/*
+**	verline function draws walls (top to bottom)
+*/
 
 static void				verline(t_glb *glb)
 {
@@ -19,9 +23,15 @@ static void				verline(t_glb *glb)
 	i = -1;
 	while (++i < glb->move->draw_start)
 		minilibx_pxl_put(glb->mlibx, glb->pos->x, i, glb->map->colorc);
-	
+	texture(glb->pos, glb->move, glb->file, glb);
 	return ;
 }
+
+/*
+**	start_pos calls a few funcions for the algorythm & display of cub3D,
+**	this function also convertd the t_rgb floor & ceiling colors to a 
+**	u_int32_t variable simplify the code later
+*/
 
 static void				start_pos(t_glb *glb, t_file *file)
 {
@@ -34,6 +44,10 @@ static void				start_pos(t_glb *glb, t_file *file)
 	verline(glb);
 	return ;
 }
+
+/*
+**	algo_raycasting is main algorythm function
+*/
 
 int						algo_raycasting(t_glb *glb)
 {

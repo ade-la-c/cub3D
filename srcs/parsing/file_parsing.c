@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:08:56 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/17 17:27:07 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/18 20:29:22 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ static void					lsthub(t_list *lst, t_file *file)
 	if (!ft_strncmp(tmp, "R ", 2))
 		return (parse_res(tmp, &file->r, file, 1));
 	else if (!ft_strncmp(tmp, "NO ", 3))
-		return (parse_path(tmp, &file->no, file, 2));
+		return (parse_path(tmp, &file->no.path, file, 2));
 	else if (!ft_strncmp(tmp, "SO ", 3))
-		return (parse_path(tmp, &file->so, file, 2));
+		return (parse_path(tmp, &file->so.path, file, 2));
 	else if (!ft_strncmp(tmp, "WE ", 3))
-		return (parse_path(tmp, &file->we, file, 2));
+		return (parse_path(tmp, &file->we.path, file, 2));
 	else if (!ft_strncmp(tmp, "EA ", 3))
-		return (parse_path(tmp, &file->ea, file, 2));
+		return (parse_path(tmp, &file->ea.path, file, 2));
 	else if (!ft_strncmp(tmp, "S ", 2))
-		return (parse_path(tmp, &file->s, file, 1));
+		return (parse_path(tmp, &file->s.path, file, 1));
 	else if (!ft_strncmp(tmp, "F ", 2))
 		return (parse_rgb(tmp, &file->f, file, 1));
 	else if (!ft_strncmp(tmp, "C ", 2))

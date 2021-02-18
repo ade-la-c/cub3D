@@ -6,7 +6,7 @@
 #    By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 17:00:24 by ade-la-c          #+#    #+#              #
-#    Updated: 2021/02/17 19:00:54 by ade-la-c         ###   ########.fr        #
+#    Updated: 2021/02/18 17:40:59 by ade-la-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS			= includes/get_next_line/get_next_line.c \
 				srcs/visual/rotation.c \
 				srcs/visual/algo_raycasting.c \
 				srcs/visual/start_position.c \
+				srcs/visual/texture.c \
 				#srcs/visual/sprite.c \
 
 OBJS			= $(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:20:39 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/17 17:51:34 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/18 20:12:26 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static int				exit_hook(void *x)
 {
-	free_file((t_file *)x, "Close window");
+	free_filepaths((t_file *)x);
+	free((t_file *)x);
+	exit_error("close window");
 	return (0);
 }
 
@@ -56,7 +58,11 @@ static int				keypress_hook(int key, t_glb *glb)
 	return (0);
 }
 
-int						ft_test(t_glb *glb)
+/*
+**	ft_test function 
+*/
+
+static int				key_hooks(t_glb *glb)
 {
 	int					key;
 
@@ -79,7 +85,7 @@ void					hook_loop(int ac, t_glb *glb)
 		mlx_hook(glb->mlibx->mlx_win, XEVENT_KEYRELEASE, 0, &keyrelease_hook,
 				(void *)glb);
 		mlx_hook(glb->mlibx->mlx_win, XEVENT_EXIT, 0, &exit_hook, (void *)glb);
-		mlx_loop_hook(glb->mlibx->mlx_ptr, &ft_test, (void *)glb);
+		mlx_loop_hook(glb->mlibx->mlx_ptr, &key_hooks, (void *)glb);
 		mlx_loop(glb->mlibx->mlx_ptr);
 	}
 	if (ac == 3)

@@ -6,19 +6,19 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 17:18:03 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/15 17:16:52 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/18 20:09:57 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-void					free_file(t_file *file, char *str)
+void					free_filepaths(t_file *file)
 {
-	free(file->no);
-	free(file->so);
-	free(file->we);
-	free(file->ea);
-	exit_error(str);
+	free(file->no.path);
+	free(file->so.path);
+	free(file->we.path);
+	free(file->ea.path);
+	free(file->s.path);
 	return ;
 }
 

@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 17:41:20 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/17 19:58:03 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/18 20:09:51 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct		s_coord
 
 typedef struct		s_tex
 {
+	char			*path;
 	void			*img;
 	int				*addr;
 	int				height;
@@ -76,19 +77,15 @@ typedef struct		s_tex
 typedef struct		s_file
 {
 	t_coord			r; //x == width, y == height
-	char			*no;
-	char			*so;
-	char			*we;
-	char			*ea;
-	char			*s;
 	t_rgb			f;
 	t_rgb			c;
 	int				parsed;
 	t_list			*lst;
-	t_tex			north;
-	t_tex			south;
-	t_tex			west;
-	t_tex			east;
+	t_tex			no;
+	t_tex			so;
+	t_tex			we;
+	t_tex			ea;
+	t_tex			s;
 }					t_file;
 
 typedef struct		s_mlibx
@@ -123,11 +120,19 @@ typedef struct		s_map
 typedef struct		s_pos
 {
 	int				x;
+	int				y;
 	t_vec			dir;
 	t_vec			old_dir;
 	t_vec			plane_cam;
 	t_vec			old_pl_cam;
 	t_vec			camera;
+	int				txnum;
+	t_vec			wall;
+	t_vec			tex;
+	double			stept;
+	double			texpos;
+	u_int32_t		color;
+	int				*color2;
 }					t_pos;
 
 typedef struct		s_spr
@@ -184,10 +189,11 @@ void				t_rgb_init(t_rgb rgb);
 void				t_coord_init(t_coord *coord);
 void				t_vec_init(t_vec *vec);
 void				exit_error(char *error);
-void				free_file(t_file *file, char *str);
+void				free_filepaths(t_file *file);
 int					ft_isspace(char c);
 void				minilibx_setup(t_mlibx *mlx, t_file *file);
 void				minilibx_pxl_put(t_mlibx *mlibx, int x, int y, u_int32_t c);
+void				minilibx_get_image(t_mlibx *mlibx, t_file *file);
 
 /*
 **	FILE PARSING
@@ -208,7 +214,7 @@ void				verif_map(t_map *map);
 void				hook_loop(int ac, t_glb *glb);
 
 /*
-**	VISUAL PART
+**	MOVEMENT PART
 */
 
 void				mv_forward(t_pos *pos, t_map *map);
@@ -229,7 +235,7 @@ void				move_square(t_move*move, t_map *map);
 void				pxl_to_fill(t_move *move, t_file *file, t_map *map);
 //void				img_sprite(t_glb *glb);
 
-
-void	imprimer_file(t_file *file);
+void				texture(t_pos *pos, t_move *move, t_file *file, t_glb *glb);
+// void	imprimer_file(t_file *file);
 
 #endif
