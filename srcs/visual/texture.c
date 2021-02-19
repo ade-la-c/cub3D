@@ -6,12 +6,11 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 20:02:53 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/18 20:12:48 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/19 18:48:34 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
-
 
 /*
 **	wall X, texture X
@@ -53,11 +52,10 @@ void				texture(t_pos *pos, t_move *move, t_file *file, t_glb *glb)
 	pos->texpos = (move->draw_start - file->r.y / 2 + move->line_h / 2)
 		* pos->stept;
 	pos->y = move->draw_start;
-	pos->tex.y = (int)pos->texpos & (tex.height - 1);
 	while (pos->y < move->draw_end)
 	{
-		pos->color = tex.addr[file->ea.width *
-		(int)pos->tex.y + (int)pos->tex.x];
+		pos->tex.y = (int)pos->texpos & (tex.height - 1);
+		pos->color = tex.addr[file->ea.width * (int)pos->tex.y + (int)pos->tex.x];
 		minilibx_pxl_put(glb->mlibx, pos->x, pos->y, pos->color);
 		pos->tex.y += pos->stept;
 		pos->y++;

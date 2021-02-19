@@ -1,14 +1,16 @@
-R 1920 1080
-NO assets/texture.xmp
-SO assets/texture.xmp
-WE assets/texture.xmp
-EA assets/texture.xmp
-S assets/texture.xmp
+R 800 800
+NO assets/sprites/mossy.xpm
+SO assets/sprites/colorstone.xpm
+WE assets/sprites/greystone.xpm
+EA assets/sprites/redbrick.xpm
+S assets/sprites/barrel.xpm
 F 255, 200, 25
 C 221 ,50,2
 
-11111111111111111
-10020000010000111
-10000100011110011
-10000010S10000111
-11111111111111111
+111111111111111
+100000010000001
+100000010000001
+100100011000101
+100100W00001111
+100000000001111
+111111111111111

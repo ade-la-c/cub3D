@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:30:27 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/18 19:05:23 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/19 19:22:13 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void					parse_path(char *line, char **path, t_file *file, int i)
 	j = -1;
 	if (*path != NULL)
 		exit_error("FILE : path parameter has been entered twice");
-	str = ft_strtrim(&line[i], " ");
+	if (!(str = ft_strtrim(&line[i], " 	")))
+		exit_error("ft_strtrim : crash");
 	while (str[i + ++j])
 	{
 		if (ft_isspace(str[i + j]))

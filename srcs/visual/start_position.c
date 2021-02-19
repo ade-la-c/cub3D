@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 19:34:31 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/18 16:29:57 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/19 17:12:32 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void						init_struct(t_move *move, t_map *map)
 */
 
 void						condition_ray(t_move *move, t_map *map)
-{
+{//printf("~~~~~~~%f\n", move->dir.x);
 	if (move->dir.x < 0)
 	{
 		move->step.x = -1;

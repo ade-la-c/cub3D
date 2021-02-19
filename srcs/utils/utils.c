@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 16:26:40 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/18 16:38:13 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/19 16:12:19 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,15 @@ int					ft_isspace(char c)
 		|| c == '\r')
 		return (1);
 	return (0);
+}
+
+void		*calloc_struct(size_t nmemb)
+{
+	void	*tab;
+
+	tab = malloc(nmemb);
+	if (!tab)
+		exit_error("calloc : error");
+	ft_bzero(tab, nmemb);
+	return (tab);
 }

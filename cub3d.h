@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 17:41:20 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/18 20:09:51 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/19 20:47:38 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ typedef struct		s_move
 	int				line_h;
 	int				draw_start;
 	int				draw_end;
-	int				perp_wall_dist;
+	double			perp_wall_dist;
 	t_vec			dir;
 	t_vec			map;
 	t_vec			step;
@@ -189,7 +189,7 @@ void				t_rgb_init(t_rgb rgb);
 void				t_coord_init(t_coord *coord);
 void				t_vec_init(t_vec *vec);
 void				exit_error(char *error);
-void				free_filepaths(t_file *file);
+// void				free_filepaths(t_file *file);
 int					ft_isspace(char c);
 void				minilibx_setup(t_mlibx *mlx, t_file *file);
 void				minilibx_pxl_put(t_mlibx *mlibx, int x, int y, u_int32_t c);
@@ -236,6 +236,8 @@ void				pxl_to_fill(t_move *move, t_file *file, t_map *map);
 //void				img_sprite(t_glb *glb);
 
 void				texture(t_pos *pos, t_move *move, t_file *file, t_glb *glb);
+
+void				*calloc_struct(size_t nmemb);
 // void	imprimer_file(t_file *file);
 
 #endif

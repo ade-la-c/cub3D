@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:35:52 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/18 19:25:06 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/19 18:24:11 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ static void				verline(t_glb *glb)
 	i = -1;
 	while (++i < glb->move->draw_start)
 		minilibx_pxl_put(glb->mlibx, glb->pos->x, i, glb->map->colorc);
+	i--;
 	texture(glb->pos, glb->move, glb->file, glb);
+	i = glb->pos->y - 1;
+	while (++i < glb->file->r.y)
+		minilibx_pxl_put(glb->mlibx, glb->pos->x, i, glb->map->colorf);
 	return ;
 }
 
@@ -55,7 +59,7 @@ int						algo_raycasting(t_glb *glb)
 	glb->spr->zbuff = ft_calloc(sizeof(double), glb->file->r.x);
 	while (glb->pos->x < glb->file->r.x)
 	{
-		glb->pos->camera.x = 2 * glb->pos->x / glb->file->r.x - 1;
+		glb->pos->camera.x = 2 * (double)glb->pos->x / (double)glb->file->r.x - 1;
 		glb->move->dir.x = glb->pos->dir.x + glb->pos->plane_cam.x *
 			glb->pos->camera.x;
 		glb->move->dir.y = glb->pos->dir.y + glb->pos->plane_cam.y *

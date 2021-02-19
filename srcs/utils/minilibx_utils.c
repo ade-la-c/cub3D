@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 17:43:13 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/18 20:48:40 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/19 20:48:11 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 */
 
 void				minilibx_get_image(t_mlibx *mlibx, t_file *file)
-{printf("%p\n", mlibx->mlx_ptr);
+{
 	if (!(file->no.img = mlx_xpm_file_to_image(mlibx->mlx_ptr, file->no.path,
 		&file->no.width, &file->no.height)))
 		exit_error("FILE : Error in texture path (NO)");
@@ -62,12 +62,12 @@ void				minilibx_pxl_put(t_mlibx *mlibx, int x, int y, u_int32_t c)
 
 void				minilibx_setup(t_mlibx *mlibx, t_file *file)
 {
-	mlibx->mlx_ptr = mlx_init();
 	if (!mlibx->mlx_ptr)
 		exit_error("MLX : crash");
 	if ((mlibx->mlx_win = mlx_new_window(mlibx->mlx_ptr, file->r.x, file->r.y,
 	"CUB3D")) == NULL)
 		exit_error("MLX : crash");
+	
 	if ((mlibx->img = mlx_new_image(mlibx->mlx_ptr, file->r.x, file->r.y))
 	== NULL)
 		return ;
