@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 17:17:33 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/19 18:42:49 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/23 19:59:51 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void					mv_left(t_pos *pos, t_map *map)
 
 	i = 0.2 - (0.4 * (pos->dir.y > 0));
 	j = 0.2 - (0.4 * (pos->dir.x < 0));
-	if (map->map[(int)map->pos.x][(int)map->pos.y] == 3)
+	if (map->map[(int)map->pos.x][(int)(map->pos.y + j)] == 3)
 		map->pos.y += pos->dir.x * MS;
 	if (map->map[(int)(map->pos.x + i)][(int)map->pos.y] == 3)
 		map->pos.x -= pos->dir.y * MS;

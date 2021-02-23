@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:20:39 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/19 20:46:19 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/23 15:35:09 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ static int				keyrelease_hook(int key, t_glb *glb)
 static int				keypress_hook(int key, t_glb *glb)
 {
 	if (key == KEYCODE_ESC)
+	{
+		mlx_destroy_image(glb->mlibx->mlx_ptr, glb->mlibx->img);
 		exit_error("Merci pour les services.");
+	}
 	if (key == KEYCODE_W)
 		mv_forward(glb->pos, glb->map);
 	if (key == KEYCODE_S)
@@ -59,7 +62,7 @@ static int				keypress_hook(int key, t_glb *glb)
 }
 
 /*
-**	ft_test function 
+**	ft_test function
 */
 
 static int				key_hooks(t_glb *glb)
@@ -69,9 +72,9 @@ static int				key_hooks(t_glb *glb)
 	key = 36;
 	keypress_hook(key, glb);
 	keyrelease_hook(key, glb);
-	algo_raycasting(glb);
 	mlx_put_image_to_window(glb->mlibx->mlx_ptr, glb->mlibx->mlx_win,
 							glb->mlibx->img, 0, 0);
+	algo_raycasting(glb);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 20:02:53 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/19 18:48:34 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/23 16:28:19 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,26 @@ void				texture(t_pos *pos, t_move *move, t_file *file, t_glb *glb)
 	t_tex			tex;
 
 	if (move->side == 1 && move->dir.y < 0)
-		tex = file->no;
-	if (move->side == 1 && move->dir.y > 0)
-		tex = file->so;
-	if (move->side == 0 && move->dir.x < 0)
 		tex = file->we;
-	if (move->side == 0 && move->dir.x > 0)
+	if (move->side == 1 && move->dir.y > 0)
 		tex = file->ea;
+	if (move->side == 0 && move->dir.x < 0)
+		tex = file->no;
+	if (move->side == 0 && move->dir.x > 0)
+		tex = file->so;
 	wallx_texx(move, pos, glb->map, tex);
 	pos->stept = (double)tex.height / (double)move->line_h;
 	pos->texpos = (move->draw_start - file->r.y / 2 + move->line_h / 2)
 		* pos->stept;
 	pos->y = move->draw_start;
-	while (pos->y < move->draw_end)
+	while (pos->y++ < move->draw_end)
 	{
 		pos->tex.y = (int)pos->texpos & (tex.height - 1);
-		pos->color = tex.addr[file->ea.width * (int)pos->tex.y + (int)pos->tex.x];
+		pos->color = tex.addr[file->ea.width *
+			(int)pos->tex.y + (int)pos->tex.x];
 		minilibx_pxl_put(glb->mlibx, pos->x, pos->y, pos->color);
+		pos->texpos += pos->stept;
 		pos->tex.y += pos->stept;
-		pos->y++;
 	}
 	return ;
 }

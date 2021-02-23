@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 17:41:20 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/19 20:47:38 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/23 19:39:03 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,7 @@ void				t_vec_init(t_vec *vec);
 void				exit_error(char *error);
 // void				free_filepaths(t_file *file);
 int					ft_isspace(char c);
+int					map_valid_char(char *str);
 void				minilibx_setup(t_mlibx *mlx, t_file *file);
 void				minilibx_pxl_put(t_mlibx *mlibx, int x, int y, u_int32_t c);
 void				minilibx_get_image(t_mlibx *mlibx, t_file *file);

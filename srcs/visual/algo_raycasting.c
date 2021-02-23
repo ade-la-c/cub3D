@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:35:52 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/19 18:24:11 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/23 15:49:54 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ int						algo_raycasting(t_glb *glb)
 		glb->pos->x++;
 	}
 //	img_sprite(glb);
+	free(glb->spr->zbuff);
 	return (1);
 }

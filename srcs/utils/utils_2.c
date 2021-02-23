@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 17:18:03 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/19 18:57:20 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/23 20:49:14 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,20 @@ void					exit_error(char *error)
 	ft_putchar('\n');
 	exit(0);
 	return;
+}
+
+int						map_valid_char(char *str)
+{
+	int					i;
+
+	i = 0;
+	if (!str || !str[i])
+		return (-1);
+	while (str && str[i] && ft_isspace(str[i]))
+		i++;
+	if (str && str[i])
+		return (1);
+	else
+		exit_error("FILE : a line is wrong (whitespaces)");
+	return (0);
 }

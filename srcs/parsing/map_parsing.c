@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 17:33:10 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/19 16:01:29 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/23 20:52:07 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ static t_map			*map_fill(t_list *lst, t_map *map, t_pos *pos)
 		map->iter.x++;
 		i++;
 	}
-	if (i < map->height)
-		exit_error("FILE : too many maps");
 	return (map);
 }
 
@@ -93,14 +91,20 @@ static t_map			*get_map_hw(t_map *map, t_list *lst)
 	t_list				*tmp;
 
 	tmp = lst;
-	map->height = 0;
+	map->height = 0;//printf("[%s]\n", tmp->content);
+	if (!tmp)
+		exit_error("FILE : map is missing");
 	while (tmp->content && tmp->next)
 	{
+		if (((char *)tmp->content)[0] == ' ')
+			map_valid_char(tmp->content);
 		map->height++;
 		map->iter.x = ft_strlen(tmp->content);
 		if (map->iter.x > map->width)
 			map->width = map->iter.x;
 		tmp = tmp->next;
+		// if (!ft_strlen(tmp->content))
+		// 	break ;
 	}
 	map->iter.x = 0;
 	return (map);
@@ -112,8 +116,12 @@ static t_map			*get_map_hw(t_map *map, t_list *lst)
 
 t_map					*map_parsing(t_list *lst, t_glb *glb)
 {
-	while (lst && !((char*)lst->content)[0])
+	while (lst && map_valid_char((char *)lst->content) != 1)
+	{
+		if (!map_valid_char((char *)lst->content))
+			exit_error("FILE : a line is wrong");
 		lst = lst->next;
+	}
 	glb->map = get_map_hw(glb->map, lst);
 	glb->map->map = (int **)malloc(sizeof(int *) * glb->map->height);
 	if (!glb->map->map)
