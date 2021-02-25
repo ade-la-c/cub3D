@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:08:56 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/19 20:48:49 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/25 21:12:06 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,15 @@ static void					t_file_init(t_file *file)
 **	param_parsing envoie la liste a lsthub ligne par ligne
 */
 
-static t_file				*param_parsing(t_list **lst, t_file *file)
+static t_file				*param_parsing(t_list *lst, t_file *file)
 {
-	t_list					*a;
-
-	a = *lst;
 	t_file_init(file);
-	while (a && file->parsed < 8)
+	while (lst && file->parsed < 8)
 	{
-		lsthub(a, file);
-		a = a->next;
+		lsthub(lst, file);
+		lst = lst->next;
 	}
-	file->lst = a;
-	//imprimer_file(&file);
+	file->lst = lst;
 	return (file);
 }
 
@@ -75,7 +71,7 @@ static t_file				*param_parsing(t_list **lst, t_file *file)
 **	file_to_lst convertit le fichier .cub en t_list
 */
 
-static t_list				**file_to_lst(char *filepath)
+static t_list				*file_to_lst(char *filepath)
 {
 	t_list					**lst;
 	t_list					*el;
@@ -96,7 +92,7 @@ static t_list				**file_to_lst(char *filepath)
 	el = ft_lstnew(line);
 	ft_lstadd_back(lst, el);
 	close(fd);
-	return (lst);
+	return (*lst);
 }
 
 t_glb						*parsing(char *filepath, t_glb *glb)
@@ -107,5 +103,6 @@ t_glb						*parsing(char *filepath, t_glb *glb)
 		glb->file->parsed++;
 		glb->map = map_parsing(glb->file->lst, glb);
 	}
+	ft_lstclear(&glb->file->lst, &free);
 	return (glb);
 }

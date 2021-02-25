@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 17:33:10 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/23 20:52:07 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/25 21:09:37 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,13 @@ static void				pos_assign(int i, t_map *map, t_pos *pos)
 **	map_fill remplit case par case le tableau map->map
 */
 
-static t_map			*map_fill(t_list *lst, t_map *map, t_pos *pos)
+static void				*map_fill(t_list *lst, t_map *map, t_pos *pos)
 {
 	int					i;
 
 	i = 0;
 	while (((char *)lst->content)[map->iter.x])
 	{
-		map->map[map->iter.y][map->iter.x] = 4;
 		if (((char *)lst->content)[map->iter.x] == ' ')
 			map->map[map->iter.y][map->iter.x] = -1;
 		else if (((char *)lst->content)[map->iter.x] == '0')
@@ -46,11 +45,13 @@ static t_map			*map_fill(t_list *lst, t_map *map, t_pos *pos)
 		else if (((char *)lst->content)[map->iter.x] == '1')
 			map->map[map->iter.y][map->iter.x] = 1;
 		else if (((char *)lst->content)[map->iter.x] == '2')
+		{
 			map->map[map->iter.y][map->iter.x] = 2;
-		else if (((char *)lst->content)[map->iter.x] == 'N' ||
-				((char *)lst->content)[map->iter.x] == 'S' ||
-				((char *)lst->content)[map->iter.x] == 'E' ||
-				((char *)lst->content)[map->iter.x] == 'W')
+			map->spr_x[map->numsprite] = (double)map->iter.x + 0.5;
+			map->spr_y[map->numsprite] = (double)map->iter.y + 0.5;
+			map->numsprite++;
+		}
+		else if (isposition(((char *)lst->content)[map->iter.x]))
 			pos_assign(((char *)lst->content)[map->iter.x], map, pos);
 		map->iter.x++;
 		i++;
@@ -60,22 +61,33 @@ static t_map			*map_fill(t_list *lst, t_map *map, t_pos *pos)
 
 /*
 **	map_iter sert à itérer dans la map dans la coordonnée x
+**	& prendre des données des sprites
 */
 
 static t_map			*map_iter(t_map *map, t_list *lst, t_pos *pos)
 {
 	int					height;
+	int					i;
+	t_list				*spr;
 
 	height = map->height;
-	map->iter.x = 0;
-	map->iter.y = 0;
 	map->position = 0;
-	while (lst && lst->content && height > 0)
+	spr = lst;
+	while (spr->content && spr->next)
+	{
+		i = -1;
+		while (((char *)spr->content)[++i])
+			if (((char *)spr->content)[i] == '2')
+				map->numsprite++;
+		spr = spr->next;
+	}
+	malloc_sprite(map);
+	map->iter.x = 0;
+	while (lst->content && height-- > 0)
 	{
 		map = map_fill(lst, map, pos);
 		lst = lst->next;
 		map->iter.x = 0;
-		height--;
 		map->iter.y++;
 	}
 	return (map);
@@ -88,23 +100,28 @@ static t_map			*map_iter(t_map *map, t_list *lst, t_pos *pos)
 
 static t_map			*get_map_hw(t_map *map, t_list *lst)
 {
-	t_list				*tmp;
+	int					i;
 
-	tmp = lst;
-	map->height = 0;//printf("[%s]\n", tmp->content);
-	if (!tmp)
-		exit_error("FILE : map is missing");
-	while (tmp->content && tmp->next)
+	i = 0;
+	if (!lst)
+		exit_error("FILE : missing map");
+	while (lst->content && lst->next && ((char *)lst->content)[0])
 	{
-		if (((char *)tmp->content)[0] == ' ')
-			map_valid_char(tmp->content);
 		map->height++;
-		map->iter.x = ft_strlen(tmp->content);
+		map->iter.x = ft_strlen(lst->content);
 		if (map->iter.x > map->width)
 			map->width = map->iter.x;
-		tmp = tmp->next;
-		// if (!ft_strlen(tmp->content))
-		// 	break ;
+		lst = lst->next;
+	}
+	while (lst && !((char*)lst->content)[0] && lst->next)
+		lst = lst->next;
+	if (lst->content && lst->next && ((char*)lst->content)[0])
+	{
+		while (ft_isspace(((char*)lst->content)[i]))
+			i++;
+		if (((char*)lst->content)[i])
+			exit_error("FILE : Too many maps");
+		lst = lst->next;
 	}
 	map->iter.x = 0;
 	return (map);
@@ -116,12 +133,8 @@ static t_map			*get_map_hw(t_map *map, t_list *lst)
 
 t_map					*map_parsing(t_list *lst, t_glb *glb)
 {
-	while (lst && map_valid_char((char *)lst->content) != 1)
-	{
-		if (!map_valid_char((char *)lst->content))
-			exit_error("FILE : a line is wrong");
+	while (lst && !((char *)lst->content)[0])
 		lst = lst->next;
-	}
 	glb->map = get_map_hw(glb->map, lst);
 	glb->map->map = (int **)malloc(sizeof(int *) * glb->map->height);
 	if (!glb->map->map)
@@ -138,7 +151,7 @@ t_map					*map_parsing(t_list *lst, t_glb *glb)
 	}
 	glb->map = map_iter(glb->map, lst, glb->pos);
 	if (glb->map->position != 1)
-		exit_error("FILE : too many / too few positions in the map");
+		exit_error("FILE : Too many / too few positions in the map");
 	verif_map(glb->map);
 	return (glb->map);
 }

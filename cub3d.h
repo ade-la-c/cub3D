@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 17:41:20 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/23 19:39:03 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/25 21:10:07 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 
 # define MS 0.1
 # define RS 0.1
+# define TXW 64
+# define TXH 64
 
 # define XEVENT_KEYPRESS 2
 # define XEVENT_KEYRELEASE 3
@@ -104,7 +106,7 @@ typedef struct		s_mlibx
 typedef struct		s_map
 {
 	t_coord			iter;
-	t_vec			pos;
+	t_vec			pos;	//x = map->x y = map->y
 	int				width;
 	int				height;
 	int				**map;
@@ -113,6 +115,7 @@ typedef struct		s_map
 	int				**actual_pos;
 	double			*spr_x;
 	double			*spr_y;
+	int				numsprite;
 	u_int32_t		colorf;
 	u_int32_t		colorc;
 }					t_map;
@@ -139,7 +142,6 @@ typedef struct		s_spr
 {
 	int				*sp_order;
 	double			*sp_dist;
-	int				numsprite;
 	t_vec			spr;
 	t_vec			transform;
 	double			invdir;
@@ -188,10 +190,10 @@ typedef struct		s_glb
 void				t_rgb_init(t_rgb rgb);
 void				t_coord_init(t_coord *coord);
 void				t_vec_init(t_vec *vec);
+int					isposition(char c);
 void				exit_error(char *error);
-// void				free_filepaths(t_file *file);
 int					ft_isspace(char c);
-int					map_valid_char(char *str);
+void				*calloc_struct(size_t nmemb);
 void				minilibx_setup(t_mlibx *mlx, t_file *file);
 void				minilibx_pxl_put(t_mlibx *mlibx, int x, int y, u_int32_t c);
 void				minilibx_get_image(t_mlibx *mlibx, t_file *file);
@@ -234,11 +236,15 @@ void				init_struct(t_move *move, t_map *map);
 void				condition_ray(t_move *move, t_map *map);
 void				move_square(t_move*move, t_map *map);
 void				pxl_to_fill(t_move *move, t_file *file, t_map *map);
-//void				img_sprite(t_glb *glb);
+
+/*
+**	TEXTURES & SPRITES
+*/
 
 void				texture(t_pos *pos, t_move *move, t_file *file, t_glb *glb);
+void				img_sprite(t_glb *glb);
+void				malloc_sprite(t_map *map);
 
-void				*calloc_struct(size_t nmemb);
 // void	imprimer_file(t_file *file);
 
 #endif

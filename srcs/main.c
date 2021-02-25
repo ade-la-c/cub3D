@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:30:33 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/19 20:58:17 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/25 21:11:19 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static t_glb				*struct_init(void)
 	return (glb);
 }
 
-int					main(int ac, char **av)
+int							main(int ac, char **av)
 {
-	t_glb			*glb;
+	t_glb					*glb;
 
 	glb = struct_init();
 	glb->mlibx->mlx_ptr = mlx_init();
@@ -46,6 +46,5 @@ int					main(int ac, char **av)
 	}
 	if (ac == 3 && ft_strncmp((char *)av[2], "--save", 7))
 		exit_error("argc[3] must be --save");
-	system("leaks Cub3D");
 	return (0);
 }

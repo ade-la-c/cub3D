@@ -6,16 +6,15 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:20:39 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/23 15:35:09 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/25 20:22:05 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static int				exit_hook(void *x)
+static int				exit_hook(t_glb *x)
 {
-	// free_filepaths((t_file *)x);
-	free((t_file *)x);
+	free(x);
 	exit_error("close window");
 	return (0);
 }

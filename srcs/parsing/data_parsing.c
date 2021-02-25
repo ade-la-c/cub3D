@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:30:27 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/19 19:22:13 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/25 20:54:43 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void					parse_res(char *line, t_coord *res, t_file *file, int i)
 	if (res->x <= 0 || res->y <= 0 || res->x >= 2147483646
 	|| res->y >= 2147483646)
 		exit_error("FILE : resolution value is not valid");
+	free(line);
 	file->parsed++;
 	return ;
 }
@@ -51,6 +52,7 @@ void					parse_path(char *line, char **path, t_file *file, int i)
 	if (j < 1)
 		exit_error("FILE : path parameter is incomplete");
 	*path = str;
+	free(line);
 	file->parsed++;
 	return ;
 }
@@ -78,6 +80,20 @@ static char				**split_rgb(char *line, int i)
 	return (strs);
 }
 
+static void				free_rgb(char **strs, char **trim, char *line)
+{
+	int					i;
+
+	i = -1;
+	while (++i < 3)
+		free(strs[i]);
+	free(strs);
+	while (i-- > 0)
+		free(trim[i]);
+	free(line);
+	return ;
+}
+
 void					parse_rgb(char *line, t_rgb *rgb, t_file *file, int i)
 {
 	char				**strs;
@@ -97,30 +113,10 @@ void					parse_rgb(char *line, t_rgb *rgb, t_file *file, int i)
 		&& ft_strlen(trim[j]) < 4))
 			exit_error("FILE : format error in rgb parameters");
 	}
-	while (j-- && strs[j])
-		free(strs[j]);
-	free(strs);
 	rgb->r = (char)ft_atoi(trim[0]);
 	rgb->g = (char)ft_atoi(trim[1]);
 	rgb->b = (char)ft_atoi(trim[2]);
+	free_rgb(strs, trim, line);
 	file->parsed++;
 	return ;
 }
-
-/*
-**	->	tous les paths sont malloqués	<-
-*/
-
-// void	imprimer_file(t_file *file)
-// {
-// 	printf("R %d %d\n", file->r.x, file->r.y);
-// 	printf("NO %s\n", file->no);
-// 	printf("SO %s\n", file->so);
-// 	printf("WE %s\n", file->we);
-// 	printf("EA %s\n", file->ea);
-// 	printf("S %s\n", file->s);
-// 	printf("F %d, %d, %d\n", file->f.r, file->f.g, file->f.b);
-// 	printf("C %d, %d, %d\n", file->c.r, file->c.g, file->c.b);
-// 	printf("\n");
-// 	return ;
-// }

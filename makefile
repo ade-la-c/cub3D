@@ -6,7 +6,7 @@
 #    By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 17:00:24 by ade-la-c          #+#    #+#              #
-#    Updated: 2021/02/23 17:35:06 by ade-la-c         ###   ########.fr        #
+#    Updated: 2021/02/25 20:15:34 by ade-la-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRCS			= includes/get_next_line/get_next_line.c \
 				srcs/visual/start_position.c \
 				srcs/visual/texture.c \
 				srcs/visual/rotation.c \
-				#srcs/visual/sprite.c 
+				srcs/visual/sprite.c 
 
 OBJS			= $(SRCS:.c=.o)
 
@@ -38,7 +38,7 @@ CC				= gcc
 
 RM				= rm -f
 
-CFLAGS			=  -Wall -Werror -Wextra -I. -g -fsanitize=address
+CFLAGS			=  -Wall -Werror -Wextra -I. #-g -fsanitize=address
 
 LIBS			= -L./includes/libft -lft -L. -lmlx -framework OpenGL \
 							-framework AppKit -lm

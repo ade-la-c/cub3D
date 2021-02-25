@@ -6,16 +6,47 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 20:25:42 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/22 16:23:33 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/25 20:17:29 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-static void				init_sprite(t_spr *spr, t_map *map, t_glb *glb, int i)
+void				malloc_sprite(t_map *map)
 {
-	spr->spr.x = map->spr_x[i] - map->pos.x;
-	spr->spr.y = map->spr_y[i] - map->pos.y;
+	map->spr_x = ft_calloc(sizeof(int*), (map->numsprite + 1));
+	map->spr_y = ft_calloc(sizeof(int*), (map->numsprite + 1));
+	map->numsprite = 0;
+	return ;
+}
+
+static void			draw_stripe(t_glb *glb, t_spr *spr, t_file *file)
+{
+	spr->tex.x = (int)(spr->stripe - (-spr->width / 2 + spr->screenx)) *
+		TXW / spr->width;
+	if (spr->transform.y > 0 && spr->stripe > 0 && spr->stripe <
+		file->r.x && spr->transform.y < spr->zbuff[spr->stripe])
+	{
+		spr->y = spr->dwstart.y;
+		while (spr->y < spr->dwend.y)
+		{
+			spr->d = spr->y * 256 - file->r.y * 128 +
+				spr->height * 128;
+			spr->tex.y = ((spr->d * file->s.height) / spr->height) / 256;
+			glb->pos->color = file->s.addr[file->s.width * spr->tex.y +
+				spr->tex.x];
+			if (glb->pos->color != 0)
+				minilibx_pxl_put(glb->mlibx, spr->stripe, spr->y,
+								glb->pos->color);
+			spr->y++;
+		}
+	}
+}
+
+static void			init_sprite(t_spr *spr, t_map *map, t_glb *glb, int i)
+{
+	spr->spr.y = map->spr_x[i] - map->pos.y;
+	spr->spr.x = map->spr_y[i] - map->pos.x;
 	spr->invdir = 1.0 / (glb->pos->plane_cam.x * glb->pos->dir.y -
 		glb->pos->dir.x * glb->pos->plane_cam.y);
 	spr->transform.x = spr->invdir * (glb->pos->dir.y * spr->spr.x -
@@ -25,14 +56,14 @@ static void				init_sprite(t_spr *spr, t_map *map, t_glb *glb, int i)
 	spr->screenx = (int)((glb->file->r.x / 2) * (1 + spr->transform.x /
 		spr->transform.y));
 	spr->height = abs((int)(glb->file->r.y / spr->transform.y));
-	spr->dwstart.y = -spr->height / 2 + glb->file->r.y / 2/* + spr->vmovesc*/;
+	spr->dwstart.y = -spr->height / 2 + glb->file->r.y / 2;
 	if (spr->dwstart.y < 0)
 		spr->dwstart.y = 0;
-	spr->dwend.y = spr->height / 2 + glb->file->r.y / 2/* + spr->vmovesc*/;
-	if (spr->dwend.y >= spr->height)
+	spr->dwend.y = spr->height / 2 + glb->file->r.y / 2;
+	if (spr->dwend.y >= glb->file->r.y)
 		spr->dwend.y = glb->file->r.y - 1;
 	spr->width = abs((int)(glb->file->r.y / spr->transform.y));
-	spr->dwstart.x = -spr->width / 2 + spr->screenx;
+	spr->dwstart.x = -spr->height / 2 + spr->screenx;
 	if (spr->dwstart.x < 0)
 		spr->dwstart.x = 0;
 	spr->dwend.x = spr->width / 2 + spr->screenx;
@@ -40,55 +71,54 @@ static void				init_sprite(t_spr *spr, t_map *map, t_glb *glb, int i)
 		spr->dwend.x = glb->file->r.x - 1;
 }
 
-static void				sort_sprite(t_spr *spr, t_map *map)
+/*
+** Sorting sprite from far to close
+*/
+
+static void			sort_sprite(t_map *map)
 {
-	int					i;
-	int					j;
+	int				i;
+	double			first;
+	double			second;
+	double			tmp;
 
 	i = 0;
-	while (i < spr->numsprite - 1)
+	while (i < map->numsprite && (i + 1 != map->numsprite))
 	{
-		spr->sp_order = ft_calloc(sizeof(int), spr->numsprite);
-		spr->sp_dist = ft_calloc(sizeof(double), spr->numsprite);
-		spr->sp_order[i] = i;
-		spr->sp_dist[i] = ((map->pos.x - map->spr_x[i]) *
-			(map->pos.x - map->spr_x[i]) +
-			(map->pos.y - map->spr_y[i]) *
-			(map->pos.y - map->spr_y[i]));
-		j = i + 1;
-		while (j < spr->numsprite)
+		first = ((map->pos.y - map->spr_x[i]) * (map->pos.y - map->spr_x[i]) +
+			(map->pos.x - map->spr_y[i]) * (map->pos.x - map->spr_y[i]));
+		second = ((map->pos.y - map->spr_x[i + 1]) * (map->pos.y -
+			map->spr_x[i + 1]) + (map->pos.x - map->spr_y[i + 1]) *
+			(map->pos.x - map->spr_y[i + 1]));
+		if (first < second)
 		{
-			if (((map->pos.x - map->spr_x[j]) *
-			(map->pos.x - map->spr_x[j]) +
-			(map->pos.y - map->spr_y[j]) *
-			(map->pos.y - map->spr_y[j])) > (int)spr->sp_dist)
-			{
-				tmp(map, i, j, 'x');
-				tmp(map, i, j, 'y');
-			}
-			j++;
+			tmp = map->spr_x[i];
+			map->spr_x[i] = map->spr_x[i + 1];
+			map->spr_x[i + 1] = tmp;
+			tmp = map->spr_y[i];
+			map->spr_y[i] = map->spr_y[i + 1];
+			map->spr_y[i + 1] = tmp;
 		}
-		i++;
+		else
+			i++;
 	}
-	return ;
 }
 
-void					img_sprite(t_glb *glb)
+void				img_sprite(t_glb *glb)
 {
-	int					i;
-	
+	int				i;
+
 	i = 0;
-	sort_sprite(glb->spr, glb->map);
-	while (i < glb->spr->numsprite)
+	sort_sprite(glb->map);
+	while (i < glb->map->numsprite)
 	{
-		ft_init_sprite(glb->spr, glb->map, glb, i);
+		init_sprite(glb->spr, glb->map, glb, i);
 		glb->spr->stripe = glb->spr->dwstart.x;
 		while (glb->spr->stripe < glb->spr->dwend.x)
 		{
-			ft_draw_stripe(glb->spr, glb->file, glb->pos);
+			draw_stripe(glb, glb->spr, glb->file);
 			glb->spr->stripe++;
 		}
 		i++;
 	}
-	return ;
 }
