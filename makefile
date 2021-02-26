@@ -6,7 +6,7 @@
 #    By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 17:00:24 by ade-la-c          #+#    #+#              #
-#    Updated: 2021/02/25 20:15:34 by ade-la-c         ###   ########.fr        #
+#    Updated: 2021/02/26 18:38:40 by ade-la-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ NAME			= Cub3D
 SRCS			= includes/get_next_line/get_next_line.c \
 				includes/get_next_line/get_next_line_utils.c \
 				srcs/main.c \
+				srcs/bmp.c \
+				srcs/event.c \
 				srcs/parsing/file_parsing.c \
 				srcs/parsing/data_parsing.c \
 				srcs/parsing/map_parsing.c \
@@ -22,7 +24,6 @@ SRCS			= includes/get_next_line/get_next_line.c \
 				srcs/utils/utils.c \
 				srcs/utils/utils_2.c \
 				srcs/utils/minilibx_utils.c \
-				srcs/event.c \
 				srcs/visual/movement.c \
 				srcs/visual/algo_raycasting.c \
 				srcs/visual/start_position.c \

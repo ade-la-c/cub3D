@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:30:33 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/25 21:11:19 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/26 14:50:59 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,26 @@ static t_glb				*struct_init(void)
 	t_glb					*glb;
 
 	glb = calloc_struct(sizeof(t_glb));
+	if (!glb)
+		exit_error("calloc : crash");
 	glb->file = calloc_struct(sizeof(t_file));
+	if (!glb->file)
+		exit_error("calloc : crash");
 	glb->map = calloc_struct(sizeof(t_map));
+	if (!glb->map)
+		exit_error("calloc : crash");
 	glb->mlibx = calloc_struct(sizeof(t_mlibx));
+	if (!glb->mlibx)
+		exit_error("calloc : crash");
 	glb->pos = calloc_struct(sizeof(t_pos));
+	if (!glb->pos)
+		exit_error("calloc : crash");
 	glb->move = calloc_struct(sizeof(t_move));
+	if (!glb->move)
+		exit_error("calloc : crash");
 	glb->spr = calloc_struct(sizeof(t_spr));
+	if (!glb->spr)
+		exit_error("calloc : crash");
 	return (glb);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 17:41:20 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/25 21:10:07 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/26 16:22:07 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct		s_mlibx
 typedef struct		s_map
 {
 	t_coord			iter;
-	t_vec			pos;	//x = map->x y = map->y
+	t_vec			pos;	//x == map->x y == map->y
 	int				width;
 	int				height;
 	int				**map;
@@ -245,6 +245,10 @@ void				texture(t_pos *pos, t_move *move, t_file *file, t_glb *glb);
 void				img_sprite(t_glb *glb);
 void				malloc_sprite(t_map *map);
 
-// void	imprimer_file(t_file *file);
+/*
+**	BMP
+*/
+
+void				save_bmp(t_glb *glb);
 
 #endif

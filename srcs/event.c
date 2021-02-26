@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:20:39 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/25 20:22:05 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/26 14:35:22 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void					hook_loop(int ac, t_glb *glb)
 	{
 		minilibx_setup(glb->mlibx, glb->file);
 		algo_raycasting(glb);
+		save_bmp(glb);
 	}
 	return ;
 }

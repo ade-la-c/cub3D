@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 17:33:10 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/25 21:09:37 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/02/26 14:46:51 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ static t_map			*map_iter(t_map *map, t_list *lst, t_pos *pos)
 		spr = spr->next;
 	}
 	malloc_sprite(map);
+	map->iter.y = 0;
 	map->iter.x = 0;
 	while (lst->content && height-- > 0)
 	{
