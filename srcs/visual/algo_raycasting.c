@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:35:52 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/26 18:52:14 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/02 14:23:19 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int						algo_raycasting(t_glb *glb)
 		start_pos(glb, glb->file);
 		glb->spr->zbuff[glb->pos->x] = glb->move->perp_wall_dist;
 		glb->pos->x++;
-	}printf("owo\n");
+	}
 	img_sprite(glb);
 	free(glb->spr->zbuff);
 	return (1);

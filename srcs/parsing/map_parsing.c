@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 17:33:10 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/26 14:46:51 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/02 19:15:42 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void				*map_fill(t_list *lst, t_map *map, t_pos *pos)
 	i = 0;
 	while (((char *)lst->content)[map->iter.x])
 	{
+		map->map[map->iter.y][map->iter.x] = -2;
 		if (((char *)lst->content)[map->iter.x] == ' ')
 			map->map[map->iter.y][map->iter.x] = -1;
 		else if (((char *)lst->content)[map->iter.x] == '0')

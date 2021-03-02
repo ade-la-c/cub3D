@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 17:41:20 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/26 16:22:07 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/02 17:19:55 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ typedef struct		s_spr
 	t_coord			tex;
 	int				y;
 	int				d;
-	int				*zbuff;
+	double			*zbuff;
 }					t_spr;
 
 typedef struct		s_move
@@ -191,7 +191,9 @@ void				t_rgb_init(t_rgb rgb);
 void				t_coord_init(t_coord *coord);
 void				t_vec_init(t_vec *vec);
 int					isposition(char c);
+void				res_fix(t_mlibx *mlibx, t_file *file);
 void				exit_error(char *error);
+void				final_free(t_glb *glb);
 int					ft_isspace(char c);
 void				*calloc_struct(size_t nmemb);
 void				minilibx_setup(t_mlibx *mlx, t_file *file);

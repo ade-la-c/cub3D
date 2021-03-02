@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:30:27 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/25 20:54:43 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/02 19:55:40 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ void					parse_res(char *line, t_coord *res, t_file *file, int i)
 	while (line[i] == ' ')
 		i++;
 	res->y = ft_atoi(&line[i]);
+	while (ft_isdigit(line[i]))
+		i++;
+	while (line[i])
+		if (line[i++] != ' ')
+			exit_error("FILE : format error in resolution parameter");
 	if (res->x <= 0 || res->y <= 0 || res->x >= 2147483646
 	|| res->y >= 2147483646)
 		exit_error("FILE : resolution value is not valid");
@@ -42,13 +47,11 @@ void					parse_path(char *line, char **path, t_file *file, int i)
 	j = -1;
 	if (*path != NULL)
 		exit_error("FILE : path parameter has been entered twice");
-	if (!(str = ft_strtrim(&line[i], " 	")))
+	if (!(str = ft_strtrim(&line[i], " ")))
 		exit_error("ft_strtrim : crash");
 	while (str[i + ++j])
-	{
 		if (ft_isspace(str[i + j]))
 			exit_error("FILE : format error in path parameters");
-	}
 	if (j < 1)
 		exit_error("FILE : path parameter is incomplete");
 	*path = str;

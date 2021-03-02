@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:56:24 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/19 17:50:05 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/02 19:30:19 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,17 @@ static void				verif_holes(t_map *map, int height, int width)
 	int					i;
 	int					j;
 
-	i = -1;
-	while (++i < height)
+	i = 0;
+	while (i < height)
 	{
-		j = -1;
-		while (++j < width)
+		j = 0;
+		while (j < width)
+		{
 			verif_holes_2(map, i, j);
+			j++;
+		}
+		i++;
 	}
-	return ;
 }
 
 /*
@@ -94,13 +97,17 @@ static void				verif_char(t_map *map, int height, int width)
 	int					i;
 	int					j;
 
-	i = -1;
-	while (++i < height)
+	i = 0;
+	while (i < height)
 	{
-		j = -1;
-		while (++j < width)
+		j = 0;
+		while (j < width)
+		{
 			if (map->map[i][j] > 3 || map->map[i][j] < -1)
 				exit_error("FILE : wrong map entry");
+			j++;
+		}
+		i++;
 	}
 	return ;
 }

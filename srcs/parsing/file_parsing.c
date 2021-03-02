@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:08:56 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/25 21:12:06 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/02 14:59:24 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ t_glb						*parsing(char *filepath, t_glb *glb)
 		glb->file->parsed++;
 		glb->map = map_parsing(glb->file->lst, glb);
 	}
+	res_fix(glb->mlibx, glb->file);
 	ft_lstclear(&glb->file->lst, &free);
 	return (glb);
 }
