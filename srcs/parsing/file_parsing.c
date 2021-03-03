@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:08:56 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/03 11:29:19 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/03 17:32:58 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ static t_file				*param_parsing(t_list *lst, t_file *file)
 	t_list					*tmp;
 
 	tmp = lst;
+	if (!lst->next)
+		exit_error("FILE : empty file");
 	t_file_init(file);
 	while (tmp && file->parsed < 8)
 	{
@@ -74,7 +76,7 @@ static t_file				*param_parsing(t_list *lst, t_file *file)
 **	file_to_lst convertit le fichier .cub en t_list
 */
 
-static t_list				*file_to_lst(char *filepath)
+static t_list				**file_to_lst(char *filepath)
 {
 	t_list					**lst;
 	t_list					*el;
@@ -89,21 +91,25 @@ static t_list				*file_to_lst(char *filepath)
 		exit_error("open : crash");
 	while (get_next_line(fd, &line) > 0)
 	{
-		el = ft_lstnew(line);printf("lst et tout %p\n", el);
+		el = ft_lstnew(line);
+		if (!el)
+			exit_error("ft_lstnew : crash");
 		ft_lstadd_back(lst, el);
 	}
 	el = ft_lstnew(line);
+	if (!el)
+		exit_error("ft_lstnew : crash");
 	ft_lstadd_back(lst, el);
 	close(fd);
-	return (*lst);
+	return (lst);
 }
 
 t_glb						*parsing(char *filepath, t_glb *glb)
 {
-	t_list					*tmp;
+	t_list					**tmp;
 
-	glb->file->lst = file_to_lst(filepath);
-	tmp = glb->file->lst;
+	tmp = file_to_lst(filepath);
+	glb->file->lst = *tmp;
 	glb->file = param_parsing(glb->file->lst, glb->file);
 	if (glb->file->parsed == 8)
 	{
@@ -111,6 +117,7 @@ t_glb						*parsing(char *filepath, t_glb *glb)
 		glb->map = map_parsing(glb->file->lst, glb);
 	}
 	res_fix(glb->mlibx, glb->file);
-	ft_lstclear(&tmp, &free);
+	ft_lstclear(tmp, &free);
+	free(tmp);
 	return (glb);
 }

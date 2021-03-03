@@ -6,7 +6,7 @@
 #    By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 17:00:24 by ade-la-c          #+#    #+#              #
-#    Updated: 2021/03/03 11:33:35 by ade-la-c         ###   ########.fr        #
+#    Updated: 2021/03/03 18:11:04 by ade-la-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@ NAME			= Cub3D
 
 SRCS			= includes/get_next_line/get_next_line.c \
 				includes/get_next_line/get_next_line_utils.c \
-				srcs/main.c \
-				srcs/bmp.c \
-				srcs/event.c \
+				srcs/main/main.c \
+				srcs/main/bmp.c \
+				srcs/main/event.c \
 				srcs/parsing/file_parsing.c \
 				srcs/parsing/data_parsing.c \
 				srcs/parsing/map_parsing.c \
@@ -39,7 +39,7 @@ CC				= gcc
 
 RM				= rm -f
 
-CFLAGS			=  -Wall -Werror -Wextra -I. #-g -fsanitize=address
+CFLAGS			=  -g -fsanitize=address -Wall -Werror -Wextra -I. 
 
 LIBS			= -L./includes/libft -lft -L. -lmlx -framework OpenGL \
 							-framework AppKit -lm

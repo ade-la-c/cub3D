@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 17:43:13 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/25 21:13:50 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/03 13:55:59 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,5 @@ void				minilibx_setup(t_mlibx *mlibx, t_file *file)
 	&mlibx->bits_per_pxl, &mlibx->line_length, &mlibx->endian)) == NULL)
 		return ;
 	mlibx->pxl_line = mlibx->line_length / (mlibx->bits_per_pxl / 8);
+	return ;
 }

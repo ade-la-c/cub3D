@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:30:27 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/03 11:33:13 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/03 16:22:36 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void					parse_path(char *line, char **path, t_file *file, int i)
 	j = -1;
 	if (*path != NULL)
 		exit_error("FILE : path parameter has been entered twice");
-	str = ft_strtrim(&line[i], " ");printf("str(filepath) %p\n", str);
+	str = ft_strtrim(&line[i], " ");
 	if (!str)
 		exit_error("ft_strtrim : crash");
 	while (str[i + ++j])
@@ -56,7 +56,6 @@ void					parse_path(char *line, char **path, t_file *file, int i)
 	if (j < 1)
 		exit_error("FILE : path parameter is incomplete");
 	*path = str;
-	// free(line);
 	file->parsed++;
 	return ;
 }
@@ -69,7 +68,7 @@ static char				**split_rgb(char *line, int i)
 
 	n = 0;
 	j = 0;
-	strs = ft_split(&line[i], ',');printf("strs(rgb) %p\n", strs);
+	strs = ft_split(&line[i], ',');
 	if (!strs)
 		exit_error("ft_split : crash");
 	while (line[i++])
@@ -112,7 +111,7 @@ void					parse_rgb(char *line, t_rgb *rgb, t_file *file, int i)
 	j = -1;
 	while (strs[++j] != NULL)
 	{
-		trim[j] = ft_strtrim(strs[j], " ");printf("trim[j](parse rgb) %p\n", trim[j]);
+		trim[j] = ft_strtrim(strs[j], " ");
 		if (!trim[j])
 			exit_error("ft_strtrim : crash");
 		if (!(ft_atoi(trim[j]) >= 0 && ft_atoi(trim[j]) <= 255
