@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:30:27 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/02 19:55:40 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/03 11:33:13 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void					parse_res(char *line, t_coord *res, t_file *file, int i)
 	if (res->x <= 0 || res->y <= 0 || res->x >= 2147483646
 	|| res->y >= 2147483646)
 		exit_error("FILE : resolution value is not valid");
-	free(line);
+	// free(line);
 	file->parsed++;
 	return ;
 }
@@ -47,7 +47,8 @@ void					parse_path(char *line, char **path, t_file *file, int i)
 	j = -1;
 	if (*path != NULL)
 		exit_error("FILE : path parameter has been entered twice");
-	if (!(str = ft_strtrim(&line[i], " ")))
+	str = ft_strtrim(&line[i], " ");printf("str(filepath) %p\n", str);
+	if (!str)
 		exit_error("ft_strtrim : crash");
 	while (str[i + ++j])
 		if (ft_isspace(str[i + j]))
@@ -55,7 +56,7 @@ void					parse_path(char *line, char **path, t_file *file, int i)
 	if (j < 1)
 		exit_error("FILE : path parameter is incomplete");
 	*path = str;
-	free(line);
+	// free(line);
 	file->parsed++;
 	return ;
 }
@@ -68,7 +69,7 @@ static char				**split_rgb(char *line, int i)
 
 	n = 0;
 	j = 0;
-	strs = ft_split(&line[i], ',');
+	strs = ft_split(&line[i], ',');printf("strs(rgb) %p\n", strs);
 	if (!strs)
 		exit_error("ft_split : crash");
 	while (line[i++])
@@ -83,7 +84,7 @@ static char				**split_rgb(char *line, int i)
 	return (strs);
 }
 
-static void				free_rgb(char **strs, char **trim, char *line)
+static void				free_rgb(char **strs, char **trim)
 {
 	int					i;
 
@@ -93,7 +94,7 @@ static void				free_rgb(char **strs, char **trim, char *line)
 	free(strs);
 	while (i-- > 0)
 		free(trim[i]);
-	free(line);
+	// free(line);
 	return ;
 }
 
@@ -111,7 +112,9 @@ void					parse_rgb(char *line, t_rgb *rgb, t_file *file, int i)
 	j = -1;
 	while (strs[++j] != NULL)
 	{
-		trim[j] = ft_strtrim(strs[j], " ");
+		trim[j] = ft_strtrim(strs[j], " ");printf("trim[j](parse rgb) %p\n", trim[j]);
+		if (!trim[j])
+			exit_error("ft_strtrim : crash");
 		if (!(ft_atoi(trim[j]) >= 0 && ft_atoi(trim[j]) <= 255
 		&& ft_strlen(trim[j]) < 4))
 			exit_error("FILE : format error in rgb parameters");
@@ -119,7 +122,7 @@ void					parse_rgb(char *line, t_rgb *rgb, t_file *file, int i)
 	rgb->r = (char)ft_atoi(trim[0]);
 	rgb->g = (char)ft_atoi(trim[1]);
 	rgb->b = (char)ft_atoi(trim[2]);
-	free_rgb(strs, trim, line);
+	free_rgb(strs, trim);
 	file->parsed++;
 	return ;
 }

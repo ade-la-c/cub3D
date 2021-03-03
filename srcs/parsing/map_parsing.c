@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 17:33:10 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/02 19:15:42 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/03 11:00:03 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,13 +138,13 @@ t_map					*map_parsing(t_list *lst, t_glb *glb)
 	while (lst && !((char *)lst->content)[0])
 		lst = lst->next;
 	glb->map = get_map_hw(glb->map, lst);
-	glb->map->map = (int **)malloc(sizeof(int *) * glb->map->height);
+	glb->map->map = (int **)malloc(sizeof(int *) * glb->map->height);printf("glb->map->map %p\n", glb->map->map);
 	if (!glb->map->map)
 		exit_error("malloc : crash");
 	while (glb->map->iter.x < glb->map->height)
 	{
 		glb->map->map[glb->map->iter.x] = (int *)malloc(sizeof(int) *
-		glb->map->width);
+		glb->map->width);printf("glb->map->map[%d] %p\n", glb->map->iter.x, glb->map->map[glb->map->iter.x]);
 		if (!glb->map->map[glb->map->iter.x])
 			exit_error("malloc : crash");
 		ft_memset(glb->map->map[glb->map->iter.x], -1,

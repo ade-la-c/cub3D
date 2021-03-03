@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 20:25:42 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/02 14:47:36 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/03 10:35:33 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void				malloc_sprite(t_map *map)
 {
-	map->spr_x = ft_calloc(sizeof(int*), (map->numsprite + 1));
+	map->spr_x = ft_calloc(sizeof(int*), (map->numsprite + 1));printf("spr_x %p\n", map->spr_x);
 	if (!map->spr_x)
 		exit_error("calloc : crash");
-	map->spr_y = ft_calloc(sizeof(int*), (map->numsprite + 1));
+	map->spr_y = ft_calloc(sizeof(int*), (map->numsprite + 1));printf("spr_y %p\n", map->spr_y);
 	if (!map->spr_y)
 		exit_error("calloc : crash");
 	map->numsprite = 0;

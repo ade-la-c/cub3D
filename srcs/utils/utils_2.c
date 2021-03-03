@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 17:18:03 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/02 19:56:57 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/03 11:56:38 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,22 @@ void					exit_error(char *error)
 }
 
 void					final_free(t_glb *glb)
-{
-	printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%p\n", &glb->map->map);
+{printf("pointeur %p\n", glb->mlibx->img);
+	int					i;
+
+	i = 0;
+	free(glb->mlibx);
+	free(glb->pos);
+	free(glb->spr);
+	free(glb->move);
+	free(glb->map->spr_x);
+	free(glb->map->spr_y);
+	while (i < glb->map->height)
+	{
+		free(glb->map->map[i]);
+		i++;
+	}
+	free(glb->map->map);
+	free(glb->map);
 	free(glb);
-	// free(glb->map->spr_x);
-	// free(glb->map->spr_y);
-	// free(glb->pos->color2);
 }

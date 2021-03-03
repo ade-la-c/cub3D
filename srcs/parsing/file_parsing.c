@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:08:56 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/02 14:59:24 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/03 11:29:19 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,16 @@ static void					t_file_init(t_file *file)
 
 static t_file				*param_parsing(t_list *lst, t_file *file)
 {
+	t_list					*tmp;
+
+	tmp = lst;
 	t_file_init(file);
-	while (lst && file->parsed < 8)
+	while (tmp && file->parsed < 8)
 	{
-		lsthub(lst, file);
-		lst = lst->next;
+		lsthub(tmp, file);
+		tmp = tmp->next;
 	}
-	file->lst = lst;
+	file->lst = tmp;
 	return (file);
 }
 
@@ -86,7 +89,7 @@ static t_list				*file_to_lst(char *filepath)
 		exit_error("open : crash");
 	while (get_next_line(fd, &line) > 0)
 	{
-		el = ft_lstnew(line);
+		el = ft_lstnew(line);printf("lst et tout %p\n", el);
 		ft_lstadd_back(lst, el);
 	}
 	el = ft_lstnew(line);
@@ -97,13 +100,17 @@ static t_list				*file_to_lst(char *filepath)
 
 t_glb						*parsing(char *filepath, t_glb *glb)
 {
-	glb->file = param_parsing(file_to_lst(filepath), glb->file);
+	t_list					*tmp;
+
+	glb->file->lst = file_to_lst(filepath);
+	tmp = glb->file->lst;
+	glb->file = param_parsing(glb->file->lst, glb->file);
 	if (glb->file->parsed == 8)
 	{
 		glb->file->parsed++;
 		glb->map = map_parsing(glb->file->lst, glb);
 	}
 	res_fix(glb->mlibx, glb->file);
-	ft_lstclear(&glb->file->lst, &free);
+	ft_lstclear(&tmp, &free);
 	return (glb);
 }
