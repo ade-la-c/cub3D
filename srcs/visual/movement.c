@@ -6,11 +6,11 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 17:17:33 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/23 19:59:51 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 15:56:53 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../cub3d.h"
 
 void					mv_forward(t_pos *pos, t_map *map)
 {

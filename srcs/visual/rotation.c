@@ -6,11 +6,11 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 18:35:17 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/15 19:17:15 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 15:56:57 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../cub3d.h"
 
 void						rotate_right(t_pos *pos)
 {

@@ -6,11 +6,11 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 17:33:10 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/04 14:32:17 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 15:56:28 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../cub3d.h"
 
 /*
 **	pos_assign s'occupe de déterminer la position de la caméra dans la map

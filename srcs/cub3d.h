@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 17:41:20 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/04 14:32:59 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 15:59:16 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 # include <fcntl.h>
 # include <float.h>
 
-# include "includes/libft/libft.h"
-# include "includes/get_next_line/get_next_line.h"
-# include "includes/mlx/mlx.h"
+# include "../includes/libft/libft.h"
+# include "../includes/get_next_line/get_next_line.h"
+# include "../includes/mlx/mlx.h"
 
 # define MS 0.1
 # define RS 0.1

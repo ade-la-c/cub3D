@@ -6,11 +6,11 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 20:25:42 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/03 16:23:06 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 15:57:01 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../cub3d.h"
 
 void				malloc_sprite(t_map *map)
 {

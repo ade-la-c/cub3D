@@ -6,11 +6,11 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:30:33 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/04 14:29:53 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 15:56:06 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../cub3d.h"
 
 /*
 **	struct_init mallocs all the structures we're going to use in cub3D

@@ -6,11 +6,11 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:08:56 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/03 17:32:58 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 15:56:24 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../cub3d.h"
 
 /*
 **	lsthub sert de hub pour le parsing des paramètres du .cub

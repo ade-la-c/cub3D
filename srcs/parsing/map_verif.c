@@ -6,11 +6,11 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:56:24 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/02 19:30:19 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 15:56:32 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../cub3d.h"
 
 /*
 **	dir_to_vec détermine la position du joueur et son orientation dans la map

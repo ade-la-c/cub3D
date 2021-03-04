@@ -6,11 +6,11 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:30:27 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/04 14:25:25 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 15:56:19 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../cub3d.h"
 
 void					parse_res(char *line, t_coord *res, t_file *file, int i)
 {

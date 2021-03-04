@@ -6,11 +6,11 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 17:43:13 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/03 13:55:59 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 15:56:37 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../cub3d.h"
 
 /*
 **	image function transforms the .xpm files

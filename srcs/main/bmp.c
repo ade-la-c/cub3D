@@ -6,11 +6,11 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 12:33:28 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/04 14:31:32 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 15:56:15 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../cub3d.h"
 
 static void				bmp_data(t_glb *glb, int fd)
 {

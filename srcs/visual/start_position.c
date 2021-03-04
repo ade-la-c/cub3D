@@ -6,11 +6,11 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 19:34:31 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/02/25 21:14:06 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 15:57:05 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../cub3d.h"
 
 /*
 ** Initie delta_dist, hit et position

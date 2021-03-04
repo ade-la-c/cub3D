@@ -6,11 +6,11 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:35:52 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/04 14:31:58 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 15:56:49 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../cub3d.h"
 
 /*
 **	verline function draws walls (top to bottom)
