@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 17:18:03 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/04 15:56:40 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 16:46:02 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,22 @@ void					res_fix(t_mlibx *mlibx, t_file *file)
 		file->r.y = y;
 }
 
+/*
+**	exit_error est la fonction qui se charge de fermer le programme chaque fois
+**	qu'un problème est rencontré
+*/
+
 void					exit_error(char *error)
 {
 	ft_putstr(error);
 	ft_putchar('\n');
 	exit(0);
 }
+
+/*
+**	final_free est appelé à la sortie du programme pour free toutes les
+**	allocations faites pendant l'execution du programme
+*/
 
 void					final_free(t_glb *glb)
 {

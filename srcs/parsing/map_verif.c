@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:56:24 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/04 15:56:32 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 16:55:56 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ static void				verif_char(t_map *map, int height, int width)
 	return ;
 }
 
-void					verif_map(t_map *map)
+void					map_verif(t_map *map)
 {
 	verif_char(map, map->height, map->width);
 	verif_holes(map, map->height, map->width);

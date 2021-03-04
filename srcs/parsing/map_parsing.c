@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 17:33:10 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/04 15:56:28 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 16:55:00 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,8 @@ static t_map			*get_map_hw(t_map *map, t_list *lst)
 }
 
 /*
-**	map_parsing s'occupe de malloc toute la map dans map->map
+**	map_parsing s'occupe de malloc toute la map dans map->map et lance
+**	tout le parsing de la map & sa vérification
 */
 
 t_map					*map_parsing(t_list *lst, t_glb *glb)
@@ -153,10 +154,6 @@ t_map					*map_parsing(t_list *lst, t_glb *glb)
 	map_iter(glb->map, lst, glb->pos);
 	if (glb->map->position != 1)
 		exit_error("FILE : Too many / too few positions in the map");
-	verif_map(glb->map);
+	map_verif(glb->map);
 	return (glb->map);
 }
-
-/*
-**	->	map->map entièrement malloquée	<-
-*/

@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:08:56 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/04 16:23:32 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 16:43:06 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,11 @@ static t_list				**file_to_lst(char *filepath)
 	close(fd);
 	return (lst);
 }
+
+/*
+**	parsing est la fonction principale de tout le parsing, elle est appelée
+**	par le main
+*/
 
 t_glb						*parsing(char *filepath, t_glb *glb)
 {

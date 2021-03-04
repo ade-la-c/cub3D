@@ -6,11 +6,15 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 16:26:40 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/04 15:56:44 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 16:50:45 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+/*
+**	les fonctions _init se lancent pendant le parsing
+*/
 
 void				t_rgb_init(t_rgb rgb)
 {
@@ -42,6 +46,11 @@ int					ft_isspace(char c)
 		return (1);
 	return (0);
 }
+
+/*
+**	calloc_struct est un calloc modifié pour allouer des structures plus
+**	facilement, il est appelé dans main.c
+*/
 
 void				*calloc_struct(size_t nmemb)
 {

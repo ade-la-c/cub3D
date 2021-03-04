@@ -6,15 +6,11 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:30:33 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/04 16:22:18 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 16:42:01 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-/*
-**	struct_init mallocs all the structures we're going to use in cub3D
-*/
 
 static int					verif_file_arg(char *filearg)
 {
@@ -22,6 +18,10 @@ static int					verif_file_arg(char *filearg)
 		return (1);
 	return (0);
 }
+
+/*
+**	struct_init mallocs all the structures we're going to use in cub3D
+*/
 
 static t_glb				*struct_init(void)
 {

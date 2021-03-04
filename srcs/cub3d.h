@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 17:41:20 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/04 15:59:16 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 16:56:25 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <math.h>
-# include <stdio.h>
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
@@ -184,7 +183,7 @@ typedef struct		s_glb
 }					t_glb;
 
 /*
-**	utils
+**	UTILS
 */
 
 void				t_rgb_init(t_rgb rgb);
@@ -210,7 +209,7 @@ void				parse_path(char *line, char **path, t_file *file, int i);
 void				parse_rgb(char *line, t_rgb *rgb, t_file *file, int i);
 t_map				*map_parsing(t_list *lst, t_glb *glb);
 void				dir_to_vec(int i, t_pos *pos);
-void				verif_map(t_map *map);
+void				map_verif(t_map *map);
 
 /*
 **	les hook et les loop

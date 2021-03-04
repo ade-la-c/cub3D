@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 20:25:42 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/04 15:57:01 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 16:52:35 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ void				malloc_sprite(t_map *map)
 	map->numsprite = 0;
 	return ;
 }
+
+/*
+**	draw_stripe draws every vertical line of the sprite
+*/
 
 static void			draw_stripe(t_glb *glb, t_spr *spr, t_file *file)
 {
