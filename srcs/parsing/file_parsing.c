@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:08:56 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/04 15:56:24 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 16:23:32 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static t_file				*param_parsing(t_list *lst, t_file *file)
 
 	tmp = lst;
 	if (!lst->next)
-		exit_error("FILE : empty file");
+		exit_error("FILE : missing or empty file");
 	t_file_init(file);
 	while (tmp && file->parsed < 8)
 	{

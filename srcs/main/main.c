@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:30:33 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/04 15:56:06 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 16:22:18 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 /*
 **	struct_init mallocs all the structures we're going to use in cub3D
 */
+
+static int					verif_file_arg(char *filearg)
+{
+	if (!ft_strncmp(ft_strchr(filearg, '.'), ".cub", 4))
+		return (1);
+	return (0);
+}
 
 static t_glb				*struct_init(void)
 {
@@ -52,6 +59,8 @@ int							main(int ac, char **av)
 	glb->mlibx->mlx_ptr = mlx_init();
 	if (!(ac == 2 || ac == 3))
 		exit_error("too many / too few main arguments");
+	if (!verif_file_arg(av[1]))
+		exit_error("file must be .cub");
 	glb = parsing((char *)av[1], glb);
 	minilibx_get_image(glb->mlibx, glb->file);
 	if (ac == 2 || (ac == 3 && !ft_strncmp((char *)av[2], "--save", 7)))
