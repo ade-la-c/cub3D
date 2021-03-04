@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:30:27 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/03 16:22:36 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 14:25:25 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void					parse_res(char *line, t_coord *res, t_file *file, int i)
 	if (res->x <= 0 || res->y <= 0 || res->x >= 2147483646
 	|| res->y >= 2147483646)
 		exit_error("FILE : resolution value is not valid");
-	// free(line);
 	file->parsed++;
 	return ;
 }
@@ -93,7 +92,6 @@ static void				free_rgb(char **strs, char **trim)
 	free(strs);
 	while (i-- > 0)
 		free(trim[i]);
-	// free(line);
 	return ;
 }
 

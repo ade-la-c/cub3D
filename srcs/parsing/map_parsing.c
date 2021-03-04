@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 17:33:10 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/03 16:22:50 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 14:32:17 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void				*map_fill(t_list *lst, t_map *map, t_pos *pos)
 **	& prendre des données des sprites
 */
 
-static t_map			*map_iter(t_map *map, t_list *lst, t_pos *pos)
+static void				map_iter(t_map *map, t_list *lst, t_pos *pos)
 {
 	int					height;
 	int					i;
@@ -92,7 +92,6 @@ static t_map			*map_iter(t_map *map, t_list *lst, t_pos *pos)
 		map->iter.x = 0;
 		map->iter.y++;
 	}
-	return (map);
 }
 
 /*
@@ -151,7 +150,7 @@ t_map					*map_parsing(t_list *lst, t_glb *glb)
 		glb->map->width * sizeof(int));
 		glb->map->iter.x++;
 	}
-	glb->map = map_iter(glb->map, lst, glb->pos);
+	map_iter(glb->map, lst, glb->pos);
 	if (glb->map->position != 1)
 		exit_error("FILE : Too many / too few positions in the map");
 	verif_map(glb->map);

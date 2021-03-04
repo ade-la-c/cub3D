@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:35:52 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/03 11:52:53 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 14:31:58 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void				verline(t_glb *glb)
 	i = -1;
 	while (++i < glb->move->draw_start)
 		minilibx_pxl_put(glb->mlibx, glb->pos->x, i, glb->map->colorc);
-	i--;
 	texture(glb->pos, glb->move, glb->file, glb);
 	i = glb->pos->y - 1;
 	while (++i < glb->file->r.y)

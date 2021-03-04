@@ -6,7 +6,7 @@
 #    By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 17:00:24 by ade-la-c          #+#    #+#              #
-#    Updated: 2021/03/03 18:11:04 by ade-la-c         ###   ########.fr        #
+#    Updated: 2021/03/04 14:26:11 by ade-la-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ CC				= gcc
 
 RM				= rm -f
 
-CFLAGS			=  -g -fsanitize=address -Wall -Werror -Wextra -I. 
+CFLAGS			= -Wall -Werror -Wextra -I. #-g -fsanitize=address
 
 LIBS			= -L./includes/libft -lft -L. -lmlx -framework OpenGL \
 							-framework AppKit -lm

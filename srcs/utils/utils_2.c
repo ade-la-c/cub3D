@@ -6,7 +6,7 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 17:18:03 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/03 17:08:27 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 14:30:16 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void					exit_error(char *error)
 {
 	ft_putstr(error);
 	ft_putchar('\n');
-	// system("leaks Cub3D");
 	exit(0);
 }
 

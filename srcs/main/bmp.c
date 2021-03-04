@@ -6,15 +6,11 @@
 /*   By: ade-la-c <ade-la-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 12:33:28 by ade-la-c          #+#    #+#             */
-/*   Updated: 2021/03/03 18:09:03 by ade-la-c         ###   ########.fr       */
+/*   Updated: 2021/03/04 14:31:32 by ade-la-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
-
-
-
-
 
 static void				bmp_data(t_glb *glb, int fd)
 {
@@ -37,10 +33,6 @@ static void				bmp_data(t_glb *glb, int fd)
 	}
 }
 
-
-
-
-
 static void				bmp_header(t_glb *glb, int imgsize, int fd)
 {
 	u_int8_t			header[54];
@@ -60,10 +52,6 @@ static void				bmp_header(t_glb *glb, int imgsize, int fd)
 	if ((write(fd, header, 54)) != 54)
 		exit_error("BMP : bitshifting error");
 }
-
-
-
-
 
 void					save_bmp(t_glb *glb)
 {
